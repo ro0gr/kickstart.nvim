@@ -551,6 +551,26 @@ require('lazy').setup({
         -- tsserver = {},
         --
 
+        tsserver = {},
+        html = { filetypes = { 'html', 'twig' } },
+        ember = {},
+        spectral = {},
+        -- cssls = {},
+        stylelint_lsp = {
+          filetypes = { 'css', 'scss' },
+          -- settings = {
+          --   stylelintplus = {
+          --     autoFixOnSave = true,
+          --     autoFixOnFormat = true,
+          --   }
+          -- },
+        },
+        glint = {},
+        jsonls = {},
+        marksman = {},
+        yamlls = {},
+        pyright = {},
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
@@ -626,7 +646,8 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { 'prettierd', 'eslintd' },
+        css = { 'stylelint' },
       },
     },
   },

@@ -854,5 +854,20 @@ require('lazy').setup({
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 vim.keymap.set('n', '<leader>g', vim.cmd.Git)
 
+-- Highlight current line only on focused window
+vim.api.nvim_create_autocmd('WinLeave', {
+  desc = 'Hide cursor line when leaving window',
+  callback = function()
+    vim.opt.cursorline = false
+  end,
+})
+
+vim.api.nvim_create_autocmd('WinEnter', {
+  desc = 'Display cursor line when entering window',
+  callback = function()
+    vim.opt.cursorline = true
+  end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

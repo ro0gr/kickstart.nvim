@@ -661,6 +661,7 @@ require('lazy').setup({
         javascriptreact = { 'prettierd', 'eslintd' },
         css = { 'stylelint' },
         scss = { 'stylelint', 'prettierd' },
+        handlebars = { 'prettierd', 'glimmer' },
       },
     },
   },

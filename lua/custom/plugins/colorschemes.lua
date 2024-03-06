@@ -20,7 +20,7 @@ return {
     'rebelot/kanagawa.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'kanagawa-dragon'
+      -- vim.cmd.colorscheme 'kanagawa-dragon'
     end,
   },
 
@@ -45,6 +45,22 @@ return {
     priority = 1000,
     config = function()
       -- vim.cmd.colorscheme 'caret'
+    end,
+  },
+
+  {
+    'sainnhe/everforest',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'everforest'
+    end,
+  },
+
+  {
+    'sainnhe/edge',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'edge'
     end,
   },
 }

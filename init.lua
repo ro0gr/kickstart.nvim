@@ -882,9 +882,6 @@ require('lazy').setup({
   },
 })
 
--- My essential keybindings
-vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {
   desc = 'Hide cursor line when leaving window',

@@ -161,6 +161,8 @@ vim.opt.hlsearch = true
 vim.o.spell = true
 vim.o.spelloptions = 'noplainbuffer,camel'
 vim.o.swapfile = false
+-- make sure window opacity works
+vim.opt.termguicolors = true
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

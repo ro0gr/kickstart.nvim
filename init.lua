@@ -884,7 +884,6 @@ require('lazy').setup({
 
 -- My essential keybindings
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-vim.keymap.set('n', '<leader>g', vim.cmd.Git)
 
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {

@@ -597,6 +597,8 @@ require('lazy').setup({
         marksman = {},
         yamlls = {},
         pyright = {},
+        eslint_d = {},
+        prettierd = {},
 
         lua_ls = {
           -- cmd = {...},

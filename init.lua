@@ -582,9 +582,19 @@ require('lazy').setup({
         html = { filetypes = { 'html', 'twig' } },
         ember = {},
         spectral = {},
-        -- cssls = {},
+        cssls = {
+          filetypes = { 'css', 'scss' },
+          root_dir = require('lspconfig').util.root_pattern('package.json', '.git'),
+          on_attach = function(client)
+            client.server_capabilities.document_formatting = false
+          end,
+        },
         stylelint_lsp = {
           filetypes = { 'css', 'scss' },
+          root_dir = require('lspconfig').util.root_pattern('package.json', '.git'),
+          on_attach = function(client)
+            client.server_capabilities.document_formatting = false
+          end,
           -- settings = {
           --   stylelintplus = {
           --     autoFixOnSave = true,

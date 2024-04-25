@@ -700,7 +700,7 @@ require('lazy').setup({
         -- is found.
         javascript = { 'prettierd', 'eslintd' },
         javascriptreact = { 'prettierd', 'eslintd' },
-        css = { 'stylelint' },
+        css = { 'stylelint', 'prettierd' },
         scss = { 'stylelint', 'prettierd' },
         handlebars = { 'prettierd', 'glimmer' },
       },

@@ -198,6 +198,19 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Swap ; and : for command mode.
+--
+-- `:` requires a shift key which often leads the first command latter to be uppercase,
+-- like `:Wq` instead of `:wq`, which is super annoying.
+--
+-- see: https://stackoverflow.com/a/42904431/1879162
+vim.api.nvim_set_keymap('n', ';', ':', { noremap = true })
+vim.api.nvim_set_keymap('v', ';', ':', { noremap = true })
+-- Optionally, uncomment this. But I haven't still decided if I like it or not.
+-- Let's keep both options open for now to migrate smoother.
+-- vim.api.nvim_set_keymap('n', ':', ';', { noremap = true })
+-- vim.api.nvim_set_keymap('v', ':', ';', { noremap = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

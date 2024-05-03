@@ -634,6 +634,7 @@ require('lazy').setup({
           --   }
           -- },
         },
+        cspell = {},
         glint = {},
         jsonls = {},
         marksman = {},
@@ -710,6 +711,8 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
+        json = { 'fixjson' },
+        markdown = { 'prettierd' },
         javascript = { 'prettierd', 'eslintd' },
         javascriptreact = { 'prettierd', 'eslintd' },
         css = { 'stylelint', 'prettierd' },

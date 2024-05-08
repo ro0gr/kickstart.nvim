@@ -37,6 +37,7 @@ return {
     -- priority = 1000,
     init = function()
       -- vim.cmd.colorscheme 'oxocarbon'
+      -- vim.cmd.colorscheme 'carbonfox'
     end,
   },
 
@@ -50,9 +51,9 @@ return {
 
   {
     'sainnhe/everforest',
-    priority = 1000,
+    -- priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'everforest'
+      -- vim.cmd.colorscheme 'everforest'
     end,
   },
 
@@ -61,6 +62,14 @@ return {
     -- priority = 1000,
     init = function()
       -- vim.cmd.colorscheme 'edge'
+    end,
+  },
+
+  {
+    'EdenEast/nightfox.nvim',
+    -- priority = 1000,
+    init = function()
+      -- vim.cmd.colorscheme 'everforest'
     end,
   },
 }

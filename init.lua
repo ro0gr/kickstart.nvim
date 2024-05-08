@@ -167,6 +167,9 @@ vim.o.swapfile = false
 -- make sure window opacity works
 vim.opt.termguicolors = true
 
+vim.opt.laststatus = 3
+vim.opt.winbar = '%f'
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps

@@ -770,6 +770,7 @@ require('lazy').setup({
         javascriptreact = { 'eslintd', 'prettierd' },
         typescript = { 'eslintd', 'prettierd' },
         css = { 'stylelint', 'prettierd' },
+        html = { 'prettierd' },
         scss = { 'stylelint', 'prettierd' },
         handlebars = { 'prettierd', 'glimmer' },
       },

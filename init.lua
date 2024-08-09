@@ -170,6 +170,13 @@ vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 vim.opt.winbar = '%f'
 
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevel = 99
+vim.opt.foldminlines = 1
+vim.opt.foldnestmax = 10
+-- vim.opt.foldenable = false
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps

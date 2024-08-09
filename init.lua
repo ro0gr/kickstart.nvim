@@ -672,6 +672,7 @@ require('lazy').setup({
             client.server_capabilities.document_formatting = false
           end,
         },
+        css_variables = {},
         stylelint_lsp = {
           filetypes = { 'css', 'scss' },
           root_dir = require('lspconfig').util.root_pattern('package.json', '.git'),
@@ -693,6 +694,7 @@ require('lazy').setup({
         pyright = {},
         eslint_d = {},
         prettierd = {},
+        emmet_language_server = {},
 
         lua_ls = {
           -- cmd = {...},

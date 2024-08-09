@@ -904,6 +904,12 @@ require('lazy').setup({
         }, {
           {
             name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
+      })
     end,
   },
 

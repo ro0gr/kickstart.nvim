@@ -475,6 +475,7 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
 
       vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [b]ranches' })
+      vim.keymap.set('n', '<leader>sh', builtin.command_history, { desc = '[S]earch command [h]istory' })
     end,
   },
 

@@ -406,22 +406,6 @@ require('lazy').setup({
             i = { ['<C-f>'] = 'to_fuzzy_refine' },
           },
         },
-        pickers = {
-          find_files = {
-            find_command = {
-              'rg',
-              '--files',
-              '--hidden',
-              '--no-ignore-vcs',
-              '-g',
-              '!**/.git/*',
-              '-g',
-              '!**/node_modules/*',
-              '-g',
-              '!**/.repro/*', -- just to hide .repro rtp
-            },
-          },
-        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -437,13 +421,24 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', function()
-        builtin.live_grep { additional_args = { '--hidden' } }
-      end, { desc = '[S]earch by [G]rep' })
-
+      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sG', function()
+        builtin.live_grep {
+          additional_args = {
+            '--hidden',
+            '--no-ignore-vcs',
+            '-g',
+            '!**/.git/*',
+            '-g',
+            '!**/node_modules/*',
+            '-g',
+            '!**/.repro/*', -- just to hide .repro rtp
+          },
+        }
+      end, { desc = '[S]earch by [G]rep (no-ignore)' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -786,6 +781,51 @@ require('lazy').setup({
         handlebars = { 'prettierd', 'glimmer' },
       },
     },
+    config = function(_, opts)
+      local cwd = function(_, ctx)
+        local byPrettierConfigFile = require('conform.util').root_file {
+          '.prettierrc',
+          '.prettierrc.json',
+          '.prettierrc.yml',
+          '.prettierrc.yaml',
+          '.prettierrc.json5',
+          '.prettierrc.js',
+          '.prettierrc.cjs',
+          '.prettierrc.mjs',
+          '.prettierrc.toml',
+          'prettier.config.js',
+          'prettier.config.cjs',
+          'prettier.config.mjs',
+        }(_, ctx)
+
+        if byPrettierConfigFile then
+          return byPrettierConfigFile
+        end
+
+        -- TODO: recursively search for package.json + condition until there is no package.json found
+        local rootByPackageJSON = require('conform.util').root_file {
+          'package.json',
+        }(_, ctx)
+
+        vim.notify('byPackageJSON' .. rootByPackageJSON)
+
+        if rootByPackageJSON then
+          local has = file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier"') and rootByPackageJSON
+
+          vim.notify('has prettier:' .. (has and 'Yes' or 'No'))
+
+          return has
+        end
+      end
+
+      opts.formatters = {
+        prettierd = {
+          cwd = cwd,
+        },
+      }
+
+      require('conform').setup(opts)
+    end,
   },
 
   { -- Autocompletion
@@ -832,12 +872,14 @@ require('lazy').setup({
       luasnip.config.setup {}
 
       cmp.setup {
+        -- preselect = cmp.PreselectMode.None,
+
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        completion = { completeopt = 'menu,menuone,noinsert,noselect,preview' },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
@@ -927,7 +969,14 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.cmd.colorscheme 'tokyonight-night'
-      vim.cmd.colorscheme 'caret'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'everforest'
+      -- vim.cmd.colorscheme 'monet'
+      vim.cmd.colorscheme 'kanagawa'
+      -- vim.cmd.colorscheme 'sorbet'
+      -- vim.cmd.colorscheme 'caret'
+      -- vim.cmd.colorscheme 'retrobox'
+      -- vim.cmd.colorscheme 'default'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -1014,7 +1063,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
@@ -1030,7 +1079,7 @@ require('lazy').setup({
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    -- default lazy.nvim defined Nerd Font icons, otherwise define a Unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
@@ -1048,6 +1097,25 @@ require('lazy').setup({
     },
   },
 })
+
+--[[
+-- Answers if a file under a specified file path contains specific pattern in the file content.
+--
+-- @param file path path to the file
+-- @param regex regex pattern to match
+--]]
+function file_contains_pattern(filePath, regex)
+  if vim.fn.filereadable(filePath) == 1 then
+    local lines = vim.fn.readfile(filePath)
+    for _, line in ipairs(lines) do
+      if vim.fn.match(line, regex) > -1 then
+        return true
+      end
+    end
+  end
+
+  return false
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

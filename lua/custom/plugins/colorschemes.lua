@@ -32,15 +32,15 @@ return {
     end,
   },
 
-  {
-    'nyoom-engineering/oxocarbon.nvim',
-    -- priority = 1000,
-    init = function()
-      -- vim.cmd.colorscheme 'oxocarbon'
-      -- vim.cmd.colorscheme 'carbonfox'
-    end,
-  },
-
+  -- {
+  --   'nyoom-engineering/oxocarbon.nvim',
+  --   -- priority = 1000,
+  --   init = function()
+  --     -- vim.cmd.colorscheme 'oxocarbon'
+  --     -- vim.cmd.colorscheme 'carbonfox'
+  --   end,
+  -- },
+  --
   {
     'projekt0n/caret.nvim',
     -- priority = 1000,
@@ -65,11 +65,21 @@ return {
     end,
   },
 
+  -- {
+  --   'EdenEast/nightfox.nvim',
+  --   -- priority = 1000,
+  --   init = function()
+  --     -- vim.cmd.colorscheme 'everforest'
+  --   end,
+  -- },
+  --
   {
-    'EdenEast/nightfox.nvim',
-    -- priority = 1000,
-    init = function()
-      -- vim.cmd.colorscheme 'everforest'
-    end,
+    'scottmckendry/cyberdream.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+
+  {
+    'fynnfluegge/monet.nvim',
   },
 }

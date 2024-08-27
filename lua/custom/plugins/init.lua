@@ -58,4 +58,6 @@ return {
     filter_type = 'TINT',
     filter_percent = 0.05,
   }, config = true },
+
+  'JoosepAlviste/nvim-ts-context-commentstring',
 }

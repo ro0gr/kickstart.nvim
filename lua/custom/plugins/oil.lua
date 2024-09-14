@@ -75,7 +75,7 @@ return {
 
         win_options = {
           -- make the oil-git-status work
-          signcolumn = 'yes:2',
+          signcolumn = 'yes:1',
         },
 
         default_file_explorer = true,

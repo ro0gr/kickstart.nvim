@@ -54,6 +54,8 @@ return {
     end,
   },
 
+  -- alternatives:
+  --  + also https://github.com/TaDaa/vimade
   { 'miversen33/sunglasses.nvim', opts = {
     filter_type = 'TINT',
     filter_percent = 0.05,
@@ -71,5 +73,15 @@ return {
         return option == 'commentstring' and require('ts_context_commentstring.internal').calculate_commentstring() or get_option(filetype, option)
       end
     end,
+  },
+
+  {
+    'mawkler/demicolon.nvim',
+    -- keys = { ';', ',', 't', 'f', 'T', 'F', ']', '[', ']d', '[d' }, -- Uncomment this to lazy load
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    opts = {},
   },
 }

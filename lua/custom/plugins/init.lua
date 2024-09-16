@@ -40,6 +40,30 @@ return {
       require('tabby').setup()
     end,
   },
+
+  {
+    'hoob3rt/lualine.nvim',
+    event = 'VimEnter',
+    config = function()
+      require('lualine').setup {
+        -- extensions = { 'fugitive', 'oil', 'quickfix' },
+        extensions = { 'fugitive', 'quickfix' },
+
+        sections = {
+          lualine_b = {
+            function()
+              return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+            end,
+
+            'branch',
+            'diff',
+            'diagnostics',
+          },
+        },
+      }
+    end,
+  },
+
   {
     'olrtg/nvim-emmet',
     config = function()

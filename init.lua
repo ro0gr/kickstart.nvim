@@ -714,7 +714,9 @@ require('lazy').setup({
         pyright = {},
         eslint_d = {},
         prettierd = {},
-        emmet_language_server = {},
+        emmet_ls = {
+          filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'handlebars' },
+        },
 
         lua_ls = {
           -- cmd = {...},

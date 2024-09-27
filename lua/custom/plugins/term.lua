@@ -1,3 +1,12 @@
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+  desc = 'customize terminal buffers appearance',
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.cmd 'setlocal signcolumn=no'
+  end,
+})
+
 return {
   'voldikss/vim-floaterm',
   config = function()

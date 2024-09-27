@@ -171,7 +171,6 @@ vim.o.swapfile = false
 vim.opt.termguicolors = true
 
 vim.opt.laststatus = 3
-vim.opt.winbar = '%f'
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

@@ -3,8 +3,8 @@ return {
     'tpope/vim-fugitive',
     config = function()
       vim.keymap.set('n', '<leader>gB', '<CMD>Gitsigns blame<CR>', { desc = '[G]it [b]lame' })
+      vim.keymap.set('n', '<leader>tgb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = '[G]it [b]lame' })
       vim.keymap.set('n', '<leader>gl', '<CMD>Flog<CR>', { desc = '[G]it [l]og' })
-      vim.keymap.set('n', '<leader>gr', '<CMD>Git rebase --interactive<CR>', { desc = '[G]it [r]ebase' })
       vim.keymap.set('n', '<leader>gd', '<CMD>Gitsigns diffthis<CR>', { desc = '[G]it [d]iff file' })
     end,
   },

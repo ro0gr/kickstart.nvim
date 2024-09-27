@@ -19,7 +19,7 @@ return {
 
       vim.keymap.set('n', '<leader><leader>', function()
         require('telescope').extensions.smart_open.smart_open()
-      end, { noremap = true, silent = true })
+      end, { noremap = true, silent = true, desc = 'Search Files' })
     end,
     dependencies = {
       'kkharji/sqlite.lua',

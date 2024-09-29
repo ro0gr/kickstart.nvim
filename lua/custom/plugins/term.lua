@@ -35,23 +35,28 @@ return {
     vim.keymap.set({ 'n', 't' }, '<M-`>', function()
       local name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
+      -- Auto-insert when opening a terminal, but keep it disabled
+      -- when navigating to an existing terminal via regular vim navigation.
+      vim.g.floaterm_autoinsert = true
+      vim.api.nvim_create_autocmd({ 'TermEnter' }, {
+        desc = 'auto insert in terminal',
+        callback = function()
+          vim.g.floaterm_autoinsert = false
+        end,
+      })
+
       toggleFloaterm('--name=' .. name .. ' --title=' .. name .. ' tmux new -A -t "' .. name .. '"')
     end, { silent = true, desc = 'Project multiplexer' })
-
-    -- for safety, allow to delete the terminal buffer only from the normal mode
-    vim.keymap.set({ 'n', 't' }, '<M-Del>', ':FloatermKill<CR>', { silent = true })
-    vim.keymap.set('n', '<M-Tab>', ':FloatermNext<CR>', { silent = true })
-    vim.keymap.set('t', '<M-Tab>', '<C-\\><C-n>:FloatermNext<CR>', { silent = true })
-    vim.keymap.set('n', '<M-S-Tab>', ':FloatermPrev<CR>', { silent = true })
-    vim.keymap.set('t', '<M-S-Tab>', '<C-\\><C-n>:FloatermPrev<CR>', { silent = true })
 
     vim.g.floaterm_wintype = 'split'
     vim.g.floaterm_position = 'topleft'
     vim.g.floaterm_height = 15
 
-    -- HM... I'd really like it to auto insert when I toggle/open a terminal
-    -- but I don't want to auto insert when I just navigate to a terminal
-    -- which is already open, cause it stops my normal navigation flow.
+    -- Floaterm auto insert is a bit tricky to use.
+    -- It auto inserts when you open a terminal, but it also auto inserts
+    -- when you navigate to a terminal which is already open.
+    -- So I'm disabling it here, and enabling it only when I open a terminal.
+    -- This is done in the autocmd above.
     vim.g.floaterm_autoinsert = false
   end,
 }

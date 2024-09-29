@@ -5,13 +5,6 @@ vim.cmd 'cab Qa qa'
 vim.cmd 'cab git Git'
 vim.cmd 'cab g Git'
 
-vim.api.nvim_create_autocmd({ 'TermOpen' }, {
-  desc = 'extra customizations for terminal buffers',
-  callback = function()
-    vim.opt_local.spell = false
-  end,
-})
-
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {
   desc = 'Hide cursor line when leaving window',

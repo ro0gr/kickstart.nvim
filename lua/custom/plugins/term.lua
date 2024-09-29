@@ -3,10 +3,13 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+    vim.opt_local.spell = false
+
     vim.cmd 'setlocal signcolumn=no'
   end,
 })
 
+-- borrowed from https://github.com/voldikss/vim-floaterm/issues/243#issuecomment-1742222523
 local function get_bufnr_from_name(name)
   local buflist = vim.fn['floaterm#buflist#gather']()
   for _, bufnr in ipairs(buflist) do

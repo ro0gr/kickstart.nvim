@@ -846,14 +846,8 @@ require('lazy').setup({
           'package.json',
         }(_, ctx)
 
-        vim.notify('byPackageJSON' .. rootByPackageJSON)
-
         if rootByPackageJSON then
-          local has = file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier"') and rootByPackageJSON
-
-          vim.notify('has prettier:' .. (has and 'Yes' or 'No'))
-
-          return has
+          return file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier"') and rootByPackageJSON
         end
       end
 

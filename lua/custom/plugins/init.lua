@@ -103,4 +103,75 @@ return {
     opts = {},
   },
 
+  'nvim-treesitter/nvim-treesitter-context',
+
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+
+  {
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = { -- Example mapping to toggle outline
+      { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+    },
+    opts = {
+      -- Your setup opts here
+    },
+  },
+
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {
+      render = 'virtual',
+      enable_named_colors = true,
+    },
+  },
+
+  {
+    'chrishrb/gx.nvim',
+    keys = { { 'gx', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
+    cmd = { 'Browse' },
+    init = function()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = true, -- default settings
+  },
+
+  {
+    'dgagn/diagflow.nvim',
+    event = 'LspAttach',
+    opts = {},
+  },
+
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.keymap.set('i', '<M-S-W>', '<Plug>(copilot-accept-word)')
+    end,
+  },
+
+  {
+    'b0o/SchemaStore.nvim',
+    opts = {},
+    config = function()
+      require('lspconfig').jsonls.setup {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      }
+    end,
+  },
 }

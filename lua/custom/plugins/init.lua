@@ -40,7 +40,7 @@ return {
     config = function()
       require('lualine').setup {
         -- extensions = { 'fugitive', 'oil', 'quickfix' },
-        extensions = { 'fugitive', 'quickfix' },
+        extensions = { 'fugitive', 'quickfix', 'lazy', 'mason' },
 
         sections = {
           lualine_b = {
@@ -51,6 +51,12 @@ return {
             'branch',
             'diff',
             'diagnostics',
+          },
+          lualine_c = {
+            {
+              'filename',
+              path = 1,
+            },
           },
         },
       }

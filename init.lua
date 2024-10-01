@@ -847,7 +847,7 @@ require('lazy').setup({
         }(_, ctx)
 
         if rootByPackageJSON then
-          return file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier"') and rootByPackageJSON
+          return file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier":\\s\\{-}{') and rootByPackageJSON
         end
       end
 

@@ -18,7 +18,7 @@ return {
       require('telescope').load_extension 'smart_open'
 
       vim.keymap.set('n', '<leader><leader>', function()
-        require('telescope').extensions.smart_open.smart_open()
+        require('telescope').extensions.smart_open.smart_open { cwd_only = true }
       end, { noremap = true, silent = true, desc = 'Search Files' })
     end,
     dependencies = {

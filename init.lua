@@ -367,9 +367,6 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     -- branch = '0.1.x',
-    opts = function()
-      require('telescope').load_extension 'projects'
-    end,
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -464,7 +461,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 
       -- my keymaps
-      vim.keymap.set('n', '<leader>sp', require('telescope').extensions.projects.projects, { desc = '[S]earch [P]rojects' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

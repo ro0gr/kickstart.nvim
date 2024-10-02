@@ -1,6 +1,10 @@
 return {
   {
     'ahmedkhalf/project.nvim',
+
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
     event = 'VeryLazy',
     opts = {
       detection_methods = { 'pattern', 'lsp' },
@@ -12,6 +16,11 @@ return {
     },
     config = function(_, opts)
       require('project_nvim').setup(opts)
+
+      local telescope = require 'telescope'
+      telescope.load_extension 'projects'
+
+      vim.keymap.set('n', '<leader>sp', telescope.extensions.projects.projects, { desc = '[S]earch [P]rojects' })
     end,
   },
 

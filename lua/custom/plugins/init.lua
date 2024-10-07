@@ -39,14 +39,17 @@ return {
     event = 'VimEnter',
     config = function()
       require('lualine').setup {
-        -- extensions = { 'fugitive', 'oil', 'quickfix' },
+        -- extensions = { 'oil' },
         extensions = { 'fugitive', 'quickfix', 'lazy', 'mason' },
 
         sections = {
           lualine_b = {
-            function()
-              return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-            end,
+            {
+              function()
+                return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+              end,
+              color = { fg = '#ffffff', gui = 'bold' },
+            },
 
             'branch',
             'diff',

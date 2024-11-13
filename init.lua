@@ -794,7 +794,7 @@ require('lazy').setup({
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 500,
+          timeout_ms = 2500,
           lsp_format = lsp_format_opt,
         }
       end,
@@ -816,45 +816,6 @@ require('lazy').setup({
         handlebars = { 'prettierd', 'glimmer' },
       },
     },
-    config = function(_, opts)
-      local cwd = function(_, ctx)
-        local byPrettierConfigFile = require('conform.util').root_file {
-          '.prettierrc',
-          '.prettierrc.json',
-          '.prettierrc.yml',
-          '.prettierrc.yaml',
-          '.prettierrc.json5',
-          '.prettierrc.js',
-          '.prettierrc.cjs',
-          '.prettierrc.mjs',
-          '.prettierrc.toml',
-          'prettier.config.js',
-          'prettier.config.cjs',
-          'prettier.config.mjs',
-        }(_, ctx)
-
-        if byPrettierConfigFile then
-          return byPrettierConfigFile
-        end
-
-        -- TODO: recursively search for package.json + condition until there is no package.json found
-        local rootByPackageJSON = require('conform.util').root_file {
-          'package.json',
-        }(_, ctx)
-
-        if rootByPackageJSON then
-          return file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier":\\s\\{-}{') and rootByPackageJSON
-        end
-      end
-
-      opts.formatters = {
-        prettierd = {
-          cwd = cwd,
-        },
-      }
-
-      require('conform').setup(opts)
-    end,
   },
 
   { -- Autocompletion

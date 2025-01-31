@@ -30,7 +30,9 @@ return {
     -- event = 'VimEnter', -- if you want lazy load, see below
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('tabby').setup()
+      require('tabby').setup {
+        preset = 'tab_only',
+      }
     end,
   },
 

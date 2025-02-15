@@ -118,13 +118,6 @@ return {
     end,
   },
 
-  -- alternatives:
-  --  + also https://github.com/TaDaa/vimade
-  { 'miversen33/sunglasses.nvim', opts = {
-    filter_type = 'TINT',
-    filter_percent = 0.05,
-  }, config = true },
-
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
     config = function()

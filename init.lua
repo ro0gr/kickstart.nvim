@@ -728,7 +728,9 @@ require('lazy').setup({
         emmet_ls = {
           filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'handlebars' },
         },
-
+        denols = {
+          root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},

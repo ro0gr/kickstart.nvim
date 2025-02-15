@@ -822,13 +822,24 @@ require('lazy').setup({
         -- is found.
         json = { 'fixjson' },
         markdown = { 'prettierd' },
-        javascript = { 'eslintd', 'prettierd' },
-        javascriptreact = { 'eslintd', 'prettierd' },
-        typescript = { 'eslintd', 'prettierd' },
+        javascript = { 'eslint_d', 'eslintd', 'prettierd' },
+        javascriptreact = { 'eslint_d', 'prettierd' },
+        typescript = { 'eslint_d', 'prettierd' },
+        typescriptreact = { 'eslint_d', 'prettierd' },
         css = { 'stylelint', 'prettierd' },
         html = { 'prettierd' },
         scss = { 'stylelint', 'prettierd' },
-        handlebars = { 'prettierd', 'glimmer' },
+        handlebars = { 'prettierd' },
+      },
+
+      formatters = {
+        prettierd = {
+          require_cwd = true,
+        },
+        eslint_d = {
+          require_cwd = true,
+          append_args = { '--rule', 'no-debugger: 0', '--rule', 'no-console: 0' },
+        },
       },
     },
   },
@@ -946,6 +957,7 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
+
           { name = 'luasnip' },
           { name = 'path' },
         },

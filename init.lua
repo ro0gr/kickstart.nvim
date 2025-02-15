@@ -979,32 +979,6 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'everforest'
-      -- vim.cmd.colorscheme 'monet'
-      vim.cmd.colorscheme 'kanagawa'
-      -- vim.cmd.colorscheme 'sorbet'
-      -- vim.cmd.colorscheme 'caret'
-      -- vim.cmd.colorscheme 'retrobox'
-      -- vim.cmd.colorscheme 'default'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -1020,6 +994,7 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -1090,25 +1065,6 @@ require('lazy').setup({
     },
   },
 })
-
---[[
--- Answers if a file under a specified file path contains specific pattern in the file content.
---
--- @param file path path to the file
--- @param regex regex pattern to match
---]]
-function file_contains_pattern(filePath, regex)
-  if vim.fn.filereadable(filePath) == 1 then
-    local lines = vim.fn.readfile(filePath)
-    for _, line in ipairs(lines) do
-      if vim.fn.match(line, regex) > -1 then
-        return true
-      end
-    end
-  end
-
-  return false
-end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

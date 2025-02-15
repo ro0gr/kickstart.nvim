@@ -171,7 +171,12 @@ return {
     opts = {},
   },
 
-  'nvim-treesitter/nvim-treesitter-context',
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      -- mode = 'topline',
+    },
+  },
 
   {
     'kylechui/nvim-surround',

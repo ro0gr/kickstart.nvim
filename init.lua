@@ -713,7 +713,11 @@ require('lazy').setup({
         },
         cspell = {},
         glint = {},
-        jsonls = {},
+        jsonls = {
+          init_options = {
+            provideFormatter = true,
+          },
+        },
         marksman = {},
         yamlls = {},
         pyright = {},

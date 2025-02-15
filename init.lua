@@ -721,7 +721,9 @@ require('lazy').setup({
         marksman = {},
         yamlls = {},
         pyright = {},
-        eslint_d = {},
+        eslint_d = {
+          root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json'),
+        },
         prettierd = {},
         emmet_ls = {
           filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'handlebars' },

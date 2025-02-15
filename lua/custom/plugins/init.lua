@@ -234,6 +234,10 @@ return {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
           },
+          yaml = {
+            schemas = require('schemastore').yaml.schemas(),
+            validate = { enable = true },
+          },
         },
       }
     end,

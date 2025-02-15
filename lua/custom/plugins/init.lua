@@ -107,6 +107,7 @@ return {
       end
 
       local cwd_hl = vim.api.nvim_get_hl(0, { name = 'Title' })
+
       require('lualine').setup {
         -- extensions = { 'oil' },
         extensions = { 'fugitive', 'quickfix', 'lazy', 'mason' },
@@ -168,7 +169,18 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    opts = {},
+    config = function()
+      require('demicolon').setup {
+        keymaps = {
+          repeat_motions = false,
+        },
+      }
+
+      local nxo = { 'n', 'x', 'o' }
+
+      vim.keymap.set(nxo, ';', require('demicolon.repeat_jump').next)
+      vim.keymap.set(nxo, ',', require('demicolon.repeat_jump').prev)
+    end,
   },
 
   {

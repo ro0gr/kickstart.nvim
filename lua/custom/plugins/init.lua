@@ -20,6 +20,36 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
+vim.keymap.set('n', '<C-c>', function()
+  vim.cmd 'startinsert'
+end, { noremap = true, silent = true })
+
+local orig_scrolloff
+
+local function zzAndToggleScrolloff()
+  if orig_scrolloff == nil then
+    orig_scrolloff = vim.opt.scrolloff:get()
+  end
+
+  vim.cmd 'normal! zz'
+
+  if 9999 == vim.opt.scrolloff:get() then
+    vim.notify 'Setting scrolloff to original value'
+    vim.opt.scrolloff = orig_scrolloff
+    vim.opt.cursorline = true
+    -- vim.opt.number = true
+    -- vim.opt.relativenumber = true
+  else
+    vim.notify 'Setting scrolloff to 9999'
+    vim.opt.scrolloff = 9999
+    vim.opt.cursorline = false
+    -- vim.opt.number = false
+    -- vim.opt.relativenumber = true
+  end
+end
+
+vim.keymap.set('n', 'zZ', zzAndToggleScrolloff, { noremap = true })
+
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --

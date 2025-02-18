@@ -29,13 +29,14 @@ return {
     local dapui = require 'dapui'
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
+      { '<Leader>dc', dap.continue, desc = 'Debug: Start/Continue' },
       { '<F5>', dap.continue, desc = 'Debug: Start/Continue' },
       { '<F1>', dap.step_into, desc = 'Debug: Step Into' },
       { '<F2>', dap.step_over, desc = 'Debug: Step Over' },
       { '<F3>', dap.step_out, desc = 'Debug: Step Out' },
-      { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
+      { '<leader>db', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
-        '<leader>B',
+        '<leader>dB',
         function()
           dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,
@@ -79,11 +80,13 @@ return {
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
+    ---@diagnostic disable-next-line: missing-fields
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      ---@diagnostic disable-next-line: missing-fields
       controls = {
         icons = {
           pause = '⏸',

@@ -35,7 +35,7 @@ end
 return {
   'voldikss/vim-floaterm',
   config = function()
-    vim.keymap.set({ 'n', 't' }, '<M-`>', function()
+    local toggleByCwd = function()
       local name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
       -- Auto-insert when opening a terminal, but keep it disabled
@@ -49,7 +49,10 @@ return {
       })
 
       toggleFloaterm('--name=' .. name .. ' --title=' .. name .. ' tmux new -A -t "' .. name .. '"')
-    end, { silent = true, desc = 'Project multiplexer' })
+    end
+
+    vim.keymap.set({ 'n', 't' }, '<M-`>', toggleByCwd, { silent = true, desc = 'Project multiplexer' })
+    vim.keymap.set({ 'n', 't' }, '<Leader><Enter>', toggleByCwd, { silent = true, desc = 'Project multiplexer' })
 
     vim.g.floaterm_wintype = 'split'
     vim.g.floaterm_position = 'topleft'

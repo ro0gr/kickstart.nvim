@@ -91,4 +91,20 @@ return {
       },
     }
   end,
+  {
+    'aaronik/treewalker.nvim',
+    opts = {
+      highlight = true, -- default is false
+    },
+    config = function()
+      require('treewalker').setup {
+        highlight = true,
+      }
+
+      vim.api.nvim_set_keymap('n', ']]', ':Treewalker Down<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '[[', ':Treewalker Up<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '[{', ':Treewalker Left<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', ']}', ':Treewalker Right<CR>', { noremap = true })
+    end,
+  },
 }

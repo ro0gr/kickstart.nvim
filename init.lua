@@ -367,9 +367,6 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     -- branch = '0.1.x',
-    opts = function()
-      require('telescope').load_extension 'projects'
-    end,
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -464,7 +461,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 
       -- my keymaps
-      vim.keymap.set('n', '<leader>sp', require('telescope').extensions.projects.projects, { desc = '[S]earch [P]rojects' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -685,7 +681,11 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
+        ts_ls = {
+          root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json'),
+
+          single_file_support = false,
+        },
 
         html = { filetypes = { 'html', 'twig' } },
         ember = {},
@@ -713,16 +713,24 @@ require('lazy').setup({
         },
         cspell = {},
         glint = {},
-        jsonls = {},
+        jsonls = {
+          init_options = {
+            provideFormatter = true,
+          },
+        },
         marksman = {},
         yamlls = {},
         pyright = {},
-        eslint_d = {},
+        eslint_d = {
+          root_dir = require('lspconfig').util.root_pattern('tsconfig.json', 'jsconfig.json', 'package.json'),
+        },
         prettierd = {},
         emmet_ls = {
           filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'handlebars' },
         },
-
+        denols = {
+          root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -772,6 +780,8 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    log_level = vim.log.levels.DEBUG,
+    -- tag = 'v8.1.0',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -785,12 +795,13 @@ require('lazy').setup({
       },
     },
     opts = {
+      log_level = vim.log.levels.DEBUG,
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, json = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
@@ -798,7 +809,7 @@ require('lazy').setup({
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 500,
+          timeout_ms = 2500,
           lsp_format = lsp_format_opt,
         }
       end,
@@ -811,54 +822,26 @@ require('lazy').setup({
         -- is found.
         json = { 'fixjson' },
         markdown = { 'prettierd' },
-        javascript = { 'eslintd', 'prettierd' },
-        javascriptreact = { 'eslintd', 'prettierd' },
-        typescript = { 'eslintd', 'prettierd' },
+        javascript = { 'eslint_d', 'eslintd', 'prettierd' },
+        javascriptreact = { 'eslint_d', 'prettierd' },
+        typescript = { 'eslint_d', 'prettierd' },
+        typescriptreact = { 'eslint_d', 'prettierd' },
         css = { 'stylelint', 'prettierd' },
         html = { 'prettierd' },
         scss = { 'stylelint', 'prettierd' },
-        handlebars = { 'prettierd', 'glimmer' },
+        handlebars = { 'prettierd' },
+      },
+
+      formatters = {
+        prettierd = {
+          require_cwd = true,
+        },
+        eslint_d = {
+          require_cwd = true,
+          append_args = { '--rule', 'no-debugger: 0', '--rule', 'no-console: 0' },
+        },
       },
     },
-    config = function(_, opts)
-      local cwd = function(_, ctx)
-        local byPrettierConfigFile = require('conform.util').root_file {
-          '.prettierrc',
-          '.prettierrc.json',
-          '.prettierrc.yml',
-          '.prettierrc.yaml',
-          '.prettierrc.json5',
-          '.prettierrc.js',
-          '.prettierrc.cjs',
-          '.prettierrc.mjs',
-          '.prettierrc.toml',
-          'prettier.config.js',
-          'prettier.config.cjs',
-          'prettier.config.mjs',
-        }(_, ctx)
-
-        if byPrettierConfigFile then
-          return byPrettierConfigFile
-        end
-
-        -- TODO: recursively search for package.json + condition until there is no package.json found
-        local rootByPackageJSON = require('conform.util').root_file {
-          'package.json',
-        }(_, ctx)
-
-        if rootByPackageJSON then
-          return file_contains_pattern(rootByPackageJSON .. '/package.json', '"prettier":\\s\\{-}{') and rootByPackageJSON
-        end
-      end
-
-      opts.formatters = {
-        prettierd = {
-          cwd = cwd,
-        },
-      }
-
-      require('conform').setup(opts)
-    end,
   },
 
   { -- Autocompletion
@@ -974,6 +957,7 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
+
           { name = 'luasnip' },
           { name = 'path' },
         },
@@ -995,32 +979,6 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.colorscheme 'everforest'
-      -- vim.cmd.colorscheme 'monet'
-      vim.cmd.colorscheme 'kanagawa'
-      -- vim.cmd.colorscheme 'sorbet'
-      -- vim.cmd.colorscheme 'caret'
-      -- vim.cmd.colorscheme 'retrobox'
-      -- vim.cmd.colorscheme 'default'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -1036,6 +994,7 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -1106,25 +1065,6 @@ require('lazy').setup({
     },
   },
 })
-
---[[
--- Answers if a file under a specified file path contains specific pattern in the file content.
---
--- @param file path path to the file
--- @param regex regex pattern to match
---]]
-function file_contains_pattern(filePath, regex)
-  if vim.fn.filereadable(filePath) == 1 then
-    local lines = vim.fn.readfile(filePath)
-    for _, line in ipairs(lines) do
-      if vim.fn.match(line, regex) > -1 then
-        return true
-      end
-    end
-  end
-
-  return false
-end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

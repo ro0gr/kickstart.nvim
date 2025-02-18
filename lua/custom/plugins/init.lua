@@ -1,3 +1,32 @@
+if vim.g.neovide then
+  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+  vim.g.neovide_text_gamma = 0.0
+  vim.g.neovide_text_contrast = 0.5
+
+  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+
+  vim.g.neovide_scale_factor = 1.2
+  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set('n', '<D-=>', function()
+    change_scale_factor(1.25)
+  end)
+  vim.keymap.set('n', '<D-->', function()
+    change_scale_factor(1 / 1.25)
+  end)
+end
+
 vim.cmd 'cab Q q'
 vim.cmd 'cab W w'
 vim.cmd 'cab Wq wq'
@@ -20,6 +49,37 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
+vim.keymap.set('n', '<C-c>', function()
+  vim.cmd 'startinsert'
+end, { noremap = true, silent = true })
+
+local orig_scrolloff
+
+local function zzAndToggleScrolloff()
+  if orig_scrolloff == nil then
+    orig_scrolloff = vim.opt.scrolloff:get()
+  end
+
+  vim.cmd 'normal! zz'
+
+  if 9999 == vim.opt.scrolloff:get() then
+    vim.notify 'Setting scrolloff to original value'
+    vim.opt.scrolloff = orig_scrolloff
+    vim.opt.cursorline = true
+    -- vim.opt.number = true
+    -- vim.opt.relativenumber = true
+  else
+    vim.notify 'Setting scrolloff to 9999'
+    vim.opt.scrolloff = 9999
+    vim.opt.cursorline = false
+    -- vim.opt.number = false
+    -- vim.opt.relativenumber = true
+  end
+end
+
+vim.keymap.set('n', 'zZ', zzAndToggleScrolloff, { noremap = true })
+vim.keymap.set('n', '<Leader>Tc', ':TSContextToggle<CR>', { noremap = true })
+
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --
@@ -30,7 +90,9 @@ return {
     -- event = 'VimEnter', -- if you want lazy load, see below
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require('tabby').setup()
+      require('tabby').setup {
+        preset = 'tab_only',
+      }
     end,
   },
 
@@ -38,15 +100,31 @@ return {
     'hoob3rt/lualine.nvim',
     event = 'VimEnter',
     config = function()
+      local function if_int_to_hex(maybe_rgb)
+        if type(maybe_rgb) == 'number' then
+          return string.format('#%06x', maybe_rgb)
+        end
+        return maybe_rgb
+      end
+
+      local cwd_hl = vim.api.nvim_get_hl(0, { name = 'Title' })
+
       require('lualine').setup {
-        -- extensions = { 'fugitive', 'oil', 'quickfix' },
+        -- extensions = { 'oil' },
         extensions = { 'fugitive', 'quickfix', 'lazy', 'mason' },
 
         sections = {
           lualine_b = {
-            function()
-              return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-            end,
+            {
+              function()
+                return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+              end,
+              color = {
+                fg = if_int_to_hex(cwd_hl.fg),
+                bg = if_int_to_hex(cwd_hl.bg),
+                gui = 'bold',
+              },
+            },
 
             'branch',
             'diff',
@@ -71,13 +149,6 @@ return {
     end,
   },
 
-  -- alternatives:
-  --  + also https://github.com/TaDaa/vimade
-  { 'miversen33/sunglasses.nvim', opts = {
-    filter_type = 'TINT',
-    filter_percent = 0.05,
-  }, config = true },
-
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
     config = function()
@@ -99,10 +170,26 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    opts = {},
+    config = function()
+      require('demicolon').setup {
+        keymaps = {
+          repeat_motions = false,
+        },
+      }
+
+      local nxo = { 'n', 'x', 'o' }
+
+      vim.keymap.set(nxo, ';', require('demicolon.repeat_jump').next)
+      vim.keymap.set(nxo, ',', require('demicolon.repeat_jump').prev)
+    end,
   },
 
-  'nvim-treesitter/nvim-treesitter-context',
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      -- mode = 'topline',
+    },
+  },
 
   {
     'kylechui/nvim-surround',
@@ -123,6 +210,9 @@ return {
       { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
     },
     opts = {
+      outline_window = {
+        position = 'left',
+      },
       -- Your setup opts here
     },
   },
@@ -153,13 +243,6 @@ return {
   },
 
   {
-    'github/copilot.vim',
-    config = function()
-      vim.keymap.set('i', '<M-S-W>', '<Plug>(copilot-accept-word)')
-    end,
-  },
-
-  {
     'b0o/SchemaStore.nvim',
     opts = {},
     config = function()
@@ -169,8 +252,20 @@ return {
             schemas = require('schemastore').json.schemas(),
             validate = { enable = true },
           },
+          yaml = {
+            schemas = require('schemastore').yaml.schemas(),
+            validate = { enable = true },
+          },
         },
       }
     end,
+  },
+
+  {
+    'stevearc/quicker.nvim',
+    event = 'FileType qf',
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
   },
 }

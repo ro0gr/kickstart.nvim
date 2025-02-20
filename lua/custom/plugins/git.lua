@@ -34,7 +34,6 @@ return {
       vim.keymap.set('n', '<leader>gt', '<CMD>tab Git | tabmove0 | TabRename Git<CR>', { desc = '[G]it [t]ab' })
       vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns blame<CR>', { desc = '[G]it [b]lame' })
       vim.keymap.set('n', '<leader>tgb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = '[G]it [b]lame' })
-      vim.keymap.set('n', '<leader>gl', '<CMD>Flog<CR>', { desc = '[G]it [l]og' })
       vim.keymap.set('n', '<leader>gd', '<CMD>Gitsigns diffthis<CR>', { desc = '[G]it [d]iff file' })
       vim.keymap.set('n', '<leader>gp', '<CMD>Git! ps --force-with-lease<CR>', { desc = '[G]it [p]ush' })
     end,
@@ -44,15 +43,7 @@ return {
   {
     'sindrets/diffview.nvim',
     config = function()
-      vim.keymap.set('n', '<leader>gs', '<CMD>DiffviewOpen<CR>', { desc = '[G]it [s]tatus' })
+      vim.keymap.set('n', '<leader>gl', '<CMD>DiffviewFileHistory<CR>', { desc = '[G]it [l]og' })
     end,
-  },
-  {
-    'rbong/vim-flog',
-    lazy = true,
-    cmd = { 'Flog', 'Flogsplit', 'Floggit' },
-    dependencies = {
-      'tpope/vim-fugitive',
-    },
   },
 }

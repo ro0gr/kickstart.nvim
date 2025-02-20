@@ -30,7 +30,8 @@ return {
   {
     'tpope/vim-fugitive',
     config = function()
-      vim.keymap.set('n', '<leader>gg', '<CMD>tab Git<CR>', { desc = '[G]it' })
+      vim.keymap.set('n', '<leader>gv', '<CMD>vertical Git<CR>', { desc = '[G]it [v]ertical' })
+      vim.keymap.set('n', '<leader>gt', '<CMD>tab Git | tabmove0 | TabRename Git<CR>', { desc = '[G]it [t]ab' })
       vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns blame<CR>', { desc = '[G]it [b]lame' })
       vim.keymap.set('n', '<leader>tgb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = '[G]it [b]lame' })
       vim.keymap.set('n', '<leader>gl', '<CMD>Flog<CR>', { desc = '[G]it [l]og' })

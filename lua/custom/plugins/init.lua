@@ -78,6 +78,13 @@ end
 vim.keymap.set('n', 'zZ', zzAndToggleScrolloff, { noremap = true })
 vim.keymap.set('n', '<Leader>Tc', ':TSContextToggle<CR>', { noremap = true })
 
+vim.keymap.set('n', 'n', 'nzz', { noremap = true })
+vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
+vim.keymap.set('n', '*', '*zz', { noremap = true })
+vim.keymap.set('n', '#', '#zz', { noremap = true })
+vim.keymap.set('n', 'g*', 'g*zz', { noremap = true })
+vim.keymap.set('n', 'g#', 'g#zz', { noremap = true })
+
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --

@@ -867,7 +867,7 @@ require('lazy').setup({
         -- is found.
         json = { 'fixjson' },
         markdown = { 'prettierd' },
-        javascript = { 'eslint_d', 'eslintd', 'prettierd' },
+        javascript = { 'eslint_d', 'prettierd' },
         javascriptreact = { 'eslint_d', 'prettierd' },
         typescript = { 'eslint_d', 'prettierd' },
         typescriptreact = { 'eslint_d', 'prettierd' },

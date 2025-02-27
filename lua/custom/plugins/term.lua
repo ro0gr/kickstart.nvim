@@ -48,11 +48,12 @@ return {
         end,
       })
 
+      -- TODO: open with the custom tmux configuration
+      -- needs to check `vim background` and pass the correct tmux configuration
       toggleFloaterm('--name=' .. name .. ' --title=' .. name .. ' tmux new -A -t "' .. name .. '"')
     end
 
     vim.keymap.set({ 'n', 't' }, '<M-`>', toggleByCwd, { silent = true, desc = 'Project multiplexer' })
-    vim.keymap.set({ 'n', 't' }, '<Leader><Enter>', toggleByCwd, { silent = true, desc = 'Project multiplexer' })
 
     vim.g.floaterm_wintype = 'split'
     vim.g.floaterm_position = 'topleft'

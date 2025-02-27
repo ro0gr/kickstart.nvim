@@ -255,4 +255,26 @@ return {
     ---@type quicker.SetupOptions
     opts = {},
   },
+
+  {
+    'tummetott/unimpaired.nvim',
+    event = 'VeryLazy',
+    opts = {
+      keymaps = {
+        previous_file = {
+          mapping = '[f',
+          description = 'Previous file in directory. :colder in qflist',
+          dot_repeat = false,
+        },
+        next_file = {
+          mapping = ']f',
+          description = 'Next file in directory. :cnewer in qflist',
+          dot_repeat = false,
+        },
+      },
+      -- Disable the default mappings if you prefer to define your own mappings
+      default_keymaps = false,
+      -- add options here if you wish to override the default settings
+    },
+  },
 }

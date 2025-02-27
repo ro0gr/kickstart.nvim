@@ -15,7 +15,23 @@ return {
   'fynnfluegge/monet.nvim',
   { 'projekt0n/github-nvim-theme', name = 'github-theme' },
   'dgox16/oldworld.nvim',
-  'folke/tokyonight.nvim',
+  {
+
+    'folke/tokyonight.nvim',
+    -- config = function()
+    --   ---@diagnostic disable-next-line: missing-fields
+    --   require('tokyonight').setup {
+    --     styles = {
+    --       comments = { italic = false }, -- Disable italics in comments
+    --     },
+    --   }
+    --
+    --   -- Load the colorscheme here.
+    --   -- Like many other themes, this one has different styles, and you could load
+    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --   vim.cmd.colorscheme 'tokyonight-night'
+    -- end,
+  },
   {
     'rose-pine/neovim',
     name = 'rose-pine',

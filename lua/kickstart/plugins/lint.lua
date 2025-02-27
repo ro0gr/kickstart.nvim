@@ -5,9 +5,10 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
+        -- markdown = { 'markdownlint-cli2' },
         -- scss = { 'stylelint' },
         -- css = { 'stylelint' },
+        -- markdown = { 'vale' },
         javascript = { 'eslint_d' },
         typescript = { 'eslint_d' },
         typescriptreact = { 'eslint_d' },

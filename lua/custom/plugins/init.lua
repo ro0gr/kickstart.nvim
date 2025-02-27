@@ -31,8 +31,6 @@ vim.cmd 'cab Q q'
 vim.cmd 'cab W w'
 vim.cmd 'cab Wq wq'
 vim.cmd 'cab Qa qa'
-vim.cmd 'cab git Git'
-vim.cmd 'cab g Git'
 
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {
@@ -85,17 +83,6 @@ vim.keymap.set('n', '<Leader>Tc', ':TSContextToggle<CR>', { noremap = true })
 --
 -- See the kickstart.nvim README for more information
 return {
-  {
-    'nanozuki/tabby.nvim',
-    -- event = 'VimEnter', -- if you want lazy load, see below
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      require('tabby').setup {
-        preset = 'tab_only',
-      }
-    end,
-  },
-
   {
     'hoob3rt/lualine.nvim',
     event = 'VimEnter',

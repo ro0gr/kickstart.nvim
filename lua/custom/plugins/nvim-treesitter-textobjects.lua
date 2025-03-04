@@ -101,10 +101,10 @@ return {
         highlight = true,
       }
 
-      vim.api.nvim_set_keymap('n', ']]', ':Treewalker Down<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '[[', ':Treewalker Up<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '[{', ':Treewalker Left<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', ']}', ':Treewalker Right<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', ']]', ':Treewalker Down<CR>zz', { noremap = true })
+      vim.api.nvim_set_keymap('n', '[[', ':Treewalker Up<CR>zz', { noremap = true })
+      vim.api.nvim_set_keymap('n', '[{', ':Treewalker Left<CR>zz', { noremap = true })
+      vim.api.nvim_set_keymap('n', ']}', ':Treewalker Right<CR>zz', { noremap = true })
     end,
   },
 }

@@ -1,5 +1,13 @@
 return {
   'ellisonleao/gruvbox.nvim',
+  'NLKNguyen/papercolor-theme',
+
+  'altercation/vim-colors-solarized',
+
+  'rakr/vim-one',
+
+  'morhetz/gruvbox',
+
   { 'catppuccin/nvim', name = 'catppuccin' },
   'navarasu/onedark.nvim',
   'rebelot/kanagawa.nvim',

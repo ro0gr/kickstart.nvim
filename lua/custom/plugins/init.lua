@@ -1,3 +1,14 @@
+-- borrowed from https://www.reddit.com/r/neovim/comments/1j9fy2w/comment/mhec1ru/
+vim.opt.diffopt = {
+  'internal',
+  'filler',
+  'closeoff',
+  'context:12',
+  'algorithm:histogram',
+  'linematch:200',
+  'indent-heuristic',
+  'iwhite', -- they toggle this one, it doesn't fit all cases.
+}
 
 vim.keymap.set('n', '<C-c>', function()
   vim.cmd 'startinsert'

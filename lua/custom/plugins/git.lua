@@ -17,7 +17,8 @@ vim.api.nvim_create_user_command('GitTab', FugitiveTab, {
 })
 
 vim.cmd 'cab G GitTab'
-vim.cmd 'cab g Git'
+vim.cmd 'cab gt GitTab'
+vim.cmd 'cab gi Git'
 vim.cmd 'cab gs Git switch'
 vim.cmd 'cab gsc Git switch -c '
 vim.cmd 'cab gpl Git pull origin '

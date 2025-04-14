@@ -220,4 +220,74 @@ return {
       vim.keymap.set('n', '<Leader>sw', '<CMD>FzfLua tabs<CR>', { noremap = true, desc = '[s]earch [w]indow' })
     end,
   },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      -- bigfile = { enabled = true },
+      -- dashboard = { enabled = true },
+      -- explorer = { enabled = true },
+      -- indent = { enabled = true },
+      -- input = { enabled = true },
+      picker = {
+        enabled = true,
+
+        matcher = {
+          frecency = true,
+          frecency_bonus = true,
+          history_bonus = true,
+        },
+      },
+      -- notifier = { enabled = true },
+      -- quickfile = { enabled = true },
+      -- scope = { enabled = true },
+      -- scroll = { enabled = true },
+      -- statuscolumn = { enabled = true },
+      -- words = { enabled = true },
+      terminal = { enabled = true },
+    },
+    keys = {
+      -- Top Pickers & Explorer
+      {
+        '<leader><leader>',
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = 'Smart Find Files',
+      },
+      {
+        '<leader>sg',
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = '[S]earch [G]rep',
+      },
+      {
+        '<leader>sa',
+        function()
+          Snacks.picker()
+        end,
+        desc = '[S]earch [A]ll Pickers',
+      },
+      {
+        '<leader>sb',
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = '[S]earch [B]ranches',
+      },
+      {
+        '<leader>sr',
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = '[S]earch [R]esume',
+      },
+    },
+  },
 }

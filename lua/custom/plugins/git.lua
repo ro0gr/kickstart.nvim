@@ -16,16 +16,24 @@ vim.api.nvim_create_user_command('GitTab', FugitiveTab, {
   nargs = 0,
 })
 
-vim.cmd 'cab G GitTab'
+vim.cmd 'cab G Git'
+vim.cmd 'cab gs Git'
+-- let command line to be closed before toggling.
+-- This way, FugitiveToggle internal logic won't false detect the cmdline as the focused buffer
+-- and close the Fugitive buffer if needed.
+--
+-- Use the `t` prefix as a "toggle" abbreviation.
+-- Initially I've tried to use just `g` but it conflicts with the `g//` command.
+vim.cmd 'cab tg \\| FugitiveToggle'
 vim.cmd 'cab gt GitTab'
-vim.cmd 'cab gi Git'
-vim.cmd 'cab gs Git switch'
-vim.cmd 'cab gsc Git switch -c '
-vim.cmd 'cab gpl Git pull origin '
+vim.cmd 'cab gsw Git switch'
+vim.cmd 'cab gswc Git switch -c '
+vim.cmd 'cab gpl Git! pull origin '
 vim.cmd 'cab gps Git! push --force-with-lease '
 vim.cmd 'cab gl DiffviewFileHistory'
-vim.cmd 'cab gf Git fetch \\|'
+vim.cmd 'cab gf Git! fetch \\|'
 vim.cmd 'cab gcp Git cherry-pick '
+vim.cmd 'cab grb Git rebase '
 vim.cmd 'cab gri Git rebase -i @~'
 vim.cmd 'cab gro Git rebase --onto origin/main @~'
 -- "s" stands for "soft"
@@ -33,6 +41,14 @@ vim.cmd 'cab grs Git reset @~'
 -- stash/unstash
 vim.cmd 'cab gst Git stash'
 vim.cmd 'cab grsh Git reset --hard '
+vim.cmd 'cab gc Git commit'
+vim.cmd 'cab gca Git commit --amend'
+vim.cmd 'cab gw tab Git show'
+vim.cmd 'cab gb FzfLua git_branches'
+
+vim.cmd 'cab tgb Gitsigns blame'
+vim.cmd 'cab tgbl Gitsigns toggle_current_line_blame'
+vim.cmd 'cab gd Gitsigns diffthis'
 
 -- Toggle the Fugitive buffer
 -- If the buffer is not focused, open it. If it is focused, close it.

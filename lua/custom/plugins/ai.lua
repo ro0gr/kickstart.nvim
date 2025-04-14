@@ -6,27 +6,7 @@ return {
     end,
   },
 
-  {
-    'olimorris/codecompanion.nvim',
-    config = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'github/copilot.vim',
-    },
-    opts = {
-      strategies = {
-        chat = {
-          adapter = 'copilot',
-        },
-        inline = {
-          adapter = 'copilot',
-        },
-      },
-      opts = {
-        -- Set debug logging
-        log_level = 'DEBUG',
-      },
-    },
-  },
+  -- require 'custom.plugins.ai.codecompanion',
+  --
+  require 'custom.plugins.ai.avante',
 }

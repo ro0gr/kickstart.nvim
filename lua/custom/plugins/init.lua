@@ -48,6 +48,15 @@ vim.keymap.set('n', '#', '#zz', { noremap = true })
 vim.keymap.set('n', 'g*', 'g*zz', { noremap = true })
 vim.keymap.set('n', 'g#', 'g#zz', { noremap = true })
 
+-- user command to sum all the lines
+vim.api.nvim_create_user_command('SumLines', function()
+  local sum = 0
+  for _, line in ipairs(vim.fn.getline(1, '$')) do
+    sum = sum + (tonumber(line) or 0)
+  end
+  print('Sum of all lines: ' .. sum)
+end, { desc = 'Sum all lines in the current buffer' })
+
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --

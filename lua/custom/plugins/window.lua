@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd('WinLeave', {
   desc = 'Hide cursor line when leaving window',
   callback = function()
     vim.opt.cursorline = false
+    vim.opt.colorcolumn = '0' -- Disable color column
   end,
 })
 
@@ -59,6 +60,7 @@ vim.api.nvim_create_autocmd('WinEnter', {
   desc = 'Display cursor line when entering window',
   callback = function()
     vim.opt.cursorline = true
+    vim.opt.colorcolumn = '80'
   end,
 })
 
@@ -67,6 +69,9 @@ return {
   config = function()
     require('focus').setup {
       enable = true, -- Enable the plugin
+      -- we just need windows auto-resize, which is enabled by default, and
+      -- we don't need any other features, so let's disable everything enabled
+      -- by default.
       ui = {
         -- hybridnumber = false, -- Display hybrid line numbers in the focussed window only
         -- absolutenumber_unfocussed = false, -- Preserve absolute numbers in the unfocussed windows
@@ -74,6 +79,8 @@ return {
         -- cursorline = true, -- Display a cursorline in the focussed window only
         -- cursorcolumn = true, -- Display cursorcolumn in the focussed window only
         -- winhighlight = true, -- auto highlighting for focussed/unfocussed windows
+        --
+        -- this is true by default, so let's disable it
         signcolumn = false,
       },
     }

@@ -36,6 +36,30 @@ local function new_git_status()
 end
 local git_status = new_git_status()
 
+local oil_show_columns = false
+
+local OilToggleColumns = function()
+  local oil = require 'oil'
+  if oil_show_columns then
+    oil_show_columns = false
+    oil.set_columns {
+      'icon',
+    }
+  else
+    oil_show_columns = true
+    oil.set_columns {
+      'permissions',
+      'size',
+      'mtime',
+      'icon',
+    }
+  end
+end
+
+vim.api.nvim_create_user_command('OilToggleColumns', OilToggleColumns, {
+  desc = 'Toggle oil columns',
+})
+
 return {
   {
     'stevearc/oil.nvim',
@@ -51,7 +75,12 @@ return {
       end
 
       require('oil').setup {
-
+        -- columns = {
+        -- 'icon',
+        -- 'permissions',
+        -- 'size',
+        -- 'mtime',
+        -- },
         view_options = {
           -- Show files and directories that start with "."
           show_hidden = true,

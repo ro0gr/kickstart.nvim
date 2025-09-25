@@ -124,7 +124,7 @@ return {
     config = function()
       require('demicolon').setup {
         keymaps = {
-          repeat_motions = false,
+          repeat_motions = 'stateless',
         },
       }
 

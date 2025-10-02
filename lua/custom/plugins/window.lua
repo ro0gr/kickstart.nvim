@@ -67,7 +67,8 @@ vim.api.nvim_create_autocmd('WinEnter', {
 return {
   'beauwilliams/focus.nvim',
   config = function()
-    require('focus').setup {
+    local focus = require 'focus'
+    focus.setup {
       enable = true, -- Enable the plugin
       -- we just need windows auto-resize, which is enabled by default, and
       -- we don't need any other features, so let's disable everything enabled
@@ -84,5 +85,9 @@ return {
         signcolumn = false,
       },
     }
+
+    vim.keymap.set('n', '<leader>tf', focus.focus_toggle, { noremap = true, silent = true })
+
+    vim.cmd 'cab tf FocusToggle'
   end,
 }

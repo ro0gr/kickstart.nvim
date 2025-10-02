@@ -87,6 +87,8 @@ vim.api.nvim_create_user_command('SumLines', function()
   print('Sum of all lines: ' .. sum)
 end, { desc = 'Sum all lines in the current buffer' })
 
+vim.opt.guicursor:append 'ci-ve:block' -- Block cursor in command-line and replace modes
+
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --

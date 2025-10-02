@@ -6,7 +6,7 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         -- markdown = { 'markdownlint-cli2' },
-        -- scss = { 'stylelint' },
+        scss = { 'stylelint' },
         -- css = { 'stylelint' },
         -- markdown = { 'vale' },
         javascript = { 'eslint_d' },

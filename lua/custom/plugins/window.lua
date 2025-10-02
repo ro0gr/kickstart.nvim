@@ -3,6 +3,10 @@ vim.cmd 'cab W w'
 vim.cmd 'cab Wq wq'
 vim.cmd 'cab Qa qa'
 
+function update_color_column_color()
+  vim.api.nvim_set_hl(0, 'ColorColumn', { link = 'CursorLine' })
+end
+
 -- Function to determine if the theme is light or dark
 local function is_dark_mode()
   return vim.o.background == 'dark' -- "dark" or "light"
@@ -41,11 +45,12 @@ vim.api.nvim_create_autocmd('WinLeave', {
 -- Automatically update colors when the colorscheme changes
 vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = '*',
-  callback = update_dim_colors,
-})
+  callback = function()
+    update_dim_colors()
 
--- Initial setup
-update_dim_colors()
+    update_color_column_color()
+  end,
+})
 
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {
@@ -60,9 +65,12 @@ vim.api.nvim_create_autocmd('WinEnter', {
   desc = 'Display cursor line when entering window',
   callback = function()
     vim.opt.cursorline = true
-    vim.opt.colorcolumn = '80'
+    vim.opt.colorcolumn = '100'
   end,
 })
+
+update_color_column_color()
+update_dim_colors()
 
 return {
   'beauwilliams/focus.nvim',

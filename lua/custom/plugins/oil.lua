@@ -114,8 +114,9 @@ return {
         keymaps = {
           ['~'] = false, -- I still want to use vim `~` for buffer editing
           ['`'] = false, -- disable for consistency with the `~`
-          -- only allow change dir per tab
-          ['<Leader>cd'] = 'actions.tcd',
+          -- only allow change dir per buffer
+          ['gcd'] = 'actions.tcd',
+          ['<leader>cd'] = 'actions.tcd',
         },
       }
 

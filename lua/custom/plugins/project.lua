@@ -1,3 +1,30 @@
+vim.opt.sessionoptions:append 'globals,localoptions'
+
+local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
+
+vim.api.nvim_create_autocmd({ 'User' }, {
+  pattern = 'SessionSavePre',
+  group = config_group,
+  callback = function()
+    vim.g.SessionColorscheme = vim.g.colors_name
+    vim.g.SessionBg = vim.o.background
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'User' }, {
+  pattern = 'SessionLoadPost',
+  group = config_group,
+  callback = function()
+    if vim.g.SessionColorscheme then
+      vim.cmd.colorscheme(vim.g.SessionColorscheme)
+    end
+
+    if vim.g.SessionBg then
+      vim.o.background = vim.g.SessionBg
+    end
+  end,
+})
+
 return {
   {
     'ahmedkhalf/project.nvim',
@@ -27,5 +54,15 @@ return {
     end,
   },
 
-  'Shatur/neovim-session-manager',
+  {
+    'Shatur/neovim-session-manager',
+    lazy = false,
+    priority = 10000,
+    config = function()
+      local session_manager = require 'session_manager'
+      session_manager.setup {
+        autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
+      }
+    end,
+  },
 }

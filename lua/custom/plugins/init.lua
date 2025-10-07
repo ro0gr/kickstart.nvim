@@ -331,6 +331,15 @@ return {
         end,
         desc = '[S]earch [R]esume',
       },
+      {
+        '<leader>sn',
+        function()
+          Snacks.picker.files {
+            dirs = { vim.fn.stdpath 'config' },
+          }
+        end,
+        desc = '[S]earch [N]eovim files',
+      },
     },
   },
 }

@@ -92,7 +92,7 @@ end, {
   nargs = 0,
 })
 
-vim.keymap.set({ 'n', 'i' }, '<M-g>', '<CMD>GitToggle<CR>', { desc = 'Fu[g]itive toggle' })
+vim.keymap.set({ 'n', 'i', 't' }, '<M-g>', '<CMD>GitToggle<CR>', { desc = 'Fu[g]itive toggle' })
 
 return {
   {

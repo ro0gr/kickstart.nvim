@@ -2,6 +2,8 @@ return {
   {
     'github/copilot.vim',
     config = function()
+      vim.g.copilot_node_command = vim.g.node_host_prog
+
       vim.keymap.set('i', '<M-S-W>', '<Plug>(copilot-accept-word)')
     end,
   },

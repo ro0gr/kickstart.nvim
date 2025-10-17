@@ -1,3 +1,5 @@
+require 'custom.plugins.window.recent-window'
+
 vim.cmd 'cab Q q'
 vim.cmd 'cab W w'
 vim.cmd 'cab Wq wq'

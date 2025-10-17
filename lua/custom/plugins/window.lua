@@ -71,8 +71,10 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
-update_color_column_color()
-update_dim_colors()
+vim.schedule(function()
+  update_color_column_color()
+  update_dim_colors()
+end)
 
 return {
   'beauwilliams/focus.nvim',

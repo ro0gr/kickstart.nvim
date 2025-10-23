@@ -251,20 +251,8 @@ return {
 
   {
     'ibhagwan/fzf-lua',
-    -- optional for icon support
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
     opts = {},
-    config = function()
-      require('fzf-lua').setup {}
-
-      -- it just turns to be called `tabs` in lua
-      -- in fact it looks up for windows, not tabs
-      -- That's why it's `sw` instead of `st`,
-      -- and as a bonus, it's way more convenient to type 🤲
-      vim.keymap.set('n', '<Leader>sw', '<CMD>FzfLua tabs<CR>', { noremap = true, desc = '[s]earch [w]indow' })
-    end,
   },
 
   {

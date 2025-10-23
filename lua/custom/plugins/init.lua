@@ -45,6 +45,9 @@ vim.keymap.set('n', '<C-c>', function()
   vim.cmd 'startinsert'
 end, { noremap = true, silent = true })
 
+-- redo last command
+vim.keymap.set('n', '<M-.>', ':normal! @:<CR>', { noremap = true, silent = true })
+
 local orig_scrolloff
 
 local function zzAndToggleScrolloff()

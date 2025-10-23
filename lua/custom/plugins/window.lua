@@ -71,6 +71,18 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
+vim.api.nvim_create_user_command('ResizeWindow', function()
+  vim.b.focus_config = {
+    autoresize = {
+      enable = true,
+    },
+  }
+
+  local focus = require 'focus'
+  focus.resize()
+end, {})
+vim.keymap.set('n', '<c-w>!', ':ResizeWindow<CR>', { noremap = true, silent = true })
+
 vim.schedule(function()
   update_color_column_color()
   update_dim_colors()
@@ -81,7 +93,6 @@ return {
   config = function()
     local focus = require 'focus'
     focus.setup {
-      enable = true, -- Enable the plugin
       -- we just need windows auto-resize, which is enabled by default, and
       -- we don't need any other features, so let's disable everything enabled
       -- by default.
@@ -96,9 +107,10 @@ return {
         -- this is true by default, so let's disable it
         signcolumn = false,
       },
+      autoresize = {
+        enable = false,
+      },
     }
-
-    vim.keymap.set('n', '<leader>tf', focus.focus_toggle, { noremap = true, silent = true })
 
     vim.cmd 'cab tf FocusToggle'
   end,

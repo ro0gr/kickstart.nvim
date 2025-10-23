@@ -27,19 +27,4 @@ if vim.g.neovide then
   end)
 end
 
-return {
-  'beauwilliams/focus.nvim',
-  config = function()
-    require('focus').setup {
-      enable = true, -- Enable the plugin
-      ui = {
-        hybridnumber = false, -- Display hybrid line numbers in the focussed window only
-        -- absolutenumber_unfocussed = false, -- Preserve absolute numbers in the unfocussed windows
-
-        -- cursorline = true, -- Display a cursorline in the focussed window only
-        -- cursorcolumn = true, -- Display cursorcolumn in the focussed window only
-        -- winhighlight = true, -- auto highlighting for focussed/unfocussed windows
-      },
-    }
-  end,
-}
+return {}

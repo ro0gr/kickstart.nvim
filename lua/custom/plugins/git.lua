@@ -52,8 +52,6 @@ vim.cmd 'cab tgb Gitsigns blame'
 vim.cmd 'cab tgbl Gitsigns toggle_current_line_blame'
 vim.cmd 'cab gd Gitsigns diffthis'
 
-vim.keymap.set('n', '<leader>sb', 'lua Snacks.picker.git_branches()', { desc = '[S]earch [B]ranches' })
-
 -- Toggle the Fugitive buffer
 -- If the buffer is not focused, open it. If it is focused, close it.
 vim.api.nvim_create_user_command('GitToggle', function()

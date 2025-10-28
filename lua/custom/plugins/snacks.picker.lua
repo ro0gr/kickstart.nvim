@@ -34,56 +34,56 @@ return {
     {
       'gs<Space>',
       function()
-        Snacks.picker.smart()
+        require('snacks').picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
       'gsf',
       function()
-        Snacks.picker.smart()
+        require('snacks').picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
       '<leader><leader>',
       function()
-        Snacks.picker.smart()
+        require('snacks').picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
       'gsg',
       function()
-        Snacks.picker.grep()
+        require('snacks').picker.grep()
       end,
       desc = '[S]earch [G]rep',
     },
     {
       'gsa',
       function()
-        Snacks.picker()
+        require('snacks').picker()
       end,
       desc = '[S]earch [A]ll Pickers',
     },
     {
       'gsb',
       function()
-        Snacks.picker.git_branches()
+        require('snacks').picker.git_branches()
       end,
       desc = '[S]earch [B]ranches',
     },
     {
       'gsr',
       function()
-        Snacks.picker.resume()
+        require('snacks').picker.resume()
       end,
       desc = '[S]earch [R]esume',
     },
     {
       'gsn',
       function()
-        Snacks.picker.files {
+        require('snacks').picker.files {
           dirs = { vim.fn.stdpath 'config' },
         }
       end,
@@ -92,21 +92,21 @@ return {
     {
       'gsc',
       function()
-        Snacks.picker.colorschemes()
+        require('snacks').picker.colorschemes()
       end,
       desc = '[S]earch [C]olorschemes',
     },
     {
       'gsh',
       function()
-        Snacks.picker.help()
+        require('snacks').picker.help()
       end,
       desc = '[S]earch [H]elp',
     },
     {
       'gsd',
       function()
-        Snacks.picker.diagnostics()
+        require('snacks').picker.diagnostics()
       end,
       desc = '[S]earch [D]iagnostics',
     },

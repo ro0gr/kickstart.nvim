@@ -55,9 +55,16 @@ return {
     {
       'gsg',
       function()
-        require('snacks').picker.grep()
+        require('snacks').picker.grep {}
       end,
       desc = '[S]earch [G]rep',
+    },
+    {
+      'gsw',
+      function()
+        require('snacks').picker.grep_word {}
+      end,
+      desc = '[S]earch [W]ord',
     },
     {
       'gsa',

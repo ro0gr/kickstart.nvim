@@ -1,3 +1,4 @@
+----- Node.js host configuration -----
 local function get_node_handle()
   local handle = io.popen 'cd $HOME && asdf which node 2>/dev/null || which node'
   if handle == nil then
@@ -17,6 +18,7 @@ else
   print 'Warning: Could not detect Node.js path. Plugins requiring Node.js may not work.'
 end
 
+--- Terminal title configuration ---
 vim.o.title = true
 
 local function update_title()
@@ -48,6 +50,7 @@ end, { noremap = true, silent = true })
 -- redo last command
 vim.keymap.set('n', '<M-.>', ':normal! @:<CR>', { noremap = true, silent = true })
 
+--- Center screen and toggle scrolloff
 local orig_scrolloff
 
 local function zzAndToggleScrolloff()

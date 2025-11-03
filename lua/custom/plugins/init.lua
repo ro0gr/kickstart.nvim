@@ -204,6 +204,7 @@ return {
   {
     'b0o/SchemaStore.nvim',
     opts = {},
+    dependencies = { 'neovim/nvim-lspconfig' },
     config = function()
       require('lspconfig').jsonls.setup {
         settings = {

@@ -1,3 +1,64 @@
+local function colorscheme_exists(name)
+  -- Check if the colorscheme is available in the runtimepath
+  for _, colorscheme in ipairs(vim.fn.getcompletion('', 'color')) do
+    if name == colorscheme then
+      return true
+    end
+  end
+
+  return nil
+end
+
+local last_known_colorscheme = nil
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = function()
+    if vim.g.colors_name then
+      last_known_colorscheme = vim.g.colors_name
+    end
+  end,
+})
+
+-- Try to switch to an alternative colorscheme variant when background option is changed,
+-- based on the different naming conventions and current background value(dark/light).
+--
+-- There are many themes that don't support automatic background switching.
+-- Many of them use dark, light in the name, so user should choose a proper theme name manually.
+-- For such themes things like auto-dark-mode don't work out of the box.
+vim.api.nvim_create_autocmd('OptionSet', {
+  pattern = 'background',
+  callback = function()
+    vim.schedule(function()
+      local bg = vim.o.background
+      local current_colorscheme = vim.g.colors_name or last_known_colorscheme
+
+      -- if current_colorscheme contains the bg in its name, do nothing
+      if not current_colorscheme or current_colorscheme:find(bg) then
+        return
+      end
+
+      local smart_replace_name = (bg == 'light' and current_colorscheme:find 'dark') and current_colorscheme:gsub('dark', 'light')
+        or (bg == 'dark' and current_colorscheme:find 'light') and current_colorscheme:gsub('light', 'dark')
+        or nil
+
+      local candidates = {
+        smart_replace_name,
+        current_colorscheme .. '_' .. bg,
+      }
+
+      local alt_colorscheme = vim.tbl_filter(function(item)
+        return colorscheme_exists(item) ~= nil
+      end, candidates)
+
+      if alt_colorscheme and alt_colorscheme[1] then
+        vim.notify('Switching colorscheme to ' .. alt_colorscheme[1])
+
+        vim.cmd.colorscheme(alt_colorscheme[1])
+      end
+    end)
+  end,
+})
+
 return {
   'ellisonleao/gruvbox.nvim',
   'NLKNguyen/papercolor-theme',
@@ -70,8 +131,6 @@ return {
     name = 'catppuccin',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      vim.opt.background = 'light'
-
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.

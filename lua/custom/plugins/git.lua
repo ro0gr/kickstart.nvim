@@ -63,10 +63,7 @@ vim.api.nvim_create_user_command('GitToggle', function()
     if vim.api.nvim_buf_is_valid(buf) then
       if vim.bo[buf].filetype == 'fugitive' then
         fugitive_buf = buf
-        break
-      end
-
-      if vim.bo[buf].filetype == 'git' then
+      elseif vim.bo[buf].filetype == 'git' then
         table.insert(git_buffers, buf)
       end
     end

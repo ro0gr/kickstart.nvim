@@ -74,7 +74,7 @@ vim.api.nvim_create_user_command('GitToggle', function()
   -- if fugitive buffer isn't focused
   if fugitive_buf == nil or current_buf ~= fugitive_buf then
     -- Open(or focus) it
-    vim.cmd 'Git'
+    vim.cmd 'vert Git'
   else
     vim.api.nvim_buf_delete(fugitive_buf, { force = true })
 

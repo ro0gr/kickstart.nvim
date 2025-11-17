@@ -96,15 +96,13 @@ return {
     opts = {
       highlight = true, -- default is false
     },
-    config = function()
-      require('treewalker').setup {
-        highlight = true,
-      }
+    config = function(opts)
+      require('treewalker').setup(opts)
 
-      vim.api.nvim_set_keymap('n', ']]', ':Treewalker Down<CR>zz', { noremap = true })
-      vim.api.nvim_set_keymap('n', '[[', ':Treewalker Up<CR>zz', { noremap = true })
-      vim.api.nvim_set_keymap('n', '[{', ':Treewalker Left<CR>zz', { noremap = true })
-      vim.api.nvim_set_keymap('n', ']}', ':Treewalker Right<CR>zz', { noremap = true })
+      vim.api.nvim_set_keymap('n', ']]', ':Treewalker Down<CR>zz', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '[[', ':Treewalker Up<CR>zz', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '[<enter>', ':Treewalker Left<CR>zz', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', ']<enter>', ':Treewalker Right<CR>zz', { noremap = true, silent = true })
     end,
   },
 }

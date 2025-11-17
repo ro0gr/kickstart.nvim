@@ -117,6 +117,8 @@ return {
           -- only allow change dir per buffer
           ['gcd'] = 'actions.tcd',
           ['<leader>cd'] = 'actions.tcd',
+          ['gs'] = false,
+          ['gts'] = { 'actions.change_sort', mode = 'n' },
         },
       }
 

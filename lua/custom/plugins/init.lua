@@ -258,6 +258,11 @@ return {
     'ibhagwan/fzf-lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {},
+    config = function(_, opts)
+      local fzf_lua = require 'fzf-lua'
+      fzf_lua.setup(opts)
+      fzf_lua.register_ui_select()
+    end,
   },
 
   {

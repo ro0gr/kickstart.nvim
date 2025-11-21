@@ -119,6 +119,7 @@ return {
           ['<leader>cd'] = 'actions.tcd',
           ['gs'] = false,
           ['gts'] = { 'actions.change_sort', mode = 'n' },
+          ['gtc'] = { OilToggleColumns, mode = 'n', desc = 'Toggle columns' },
         },
       }
 

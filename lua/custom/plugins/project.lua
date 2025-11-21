@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({ 'User' }, {
   group = config_group,
   callback = function()
     vim.g.SessionColorscheme = vim.g.colors_name
-    vim.g.SessionBg = vim.o.background
   end,
 })
 
@@ -17,10 +16,6 @@ vim.api.nvim_create_autocmd({ 'User' }, {
   callback = function()
     if vim.g.SessionColorscheme then
       vim.cmd.colorscheme(vim.g.SessionColorscheme)
-    end
-
-    if vim.g.SessionBg then
-      vim.o.background = vim.g.SessionBg
     end
   end,
 })

@@ -20,13 +20,43 @@ vim.api.nvim_create_autocmd({ 'User' }, {
   end,
 })
 
+local function open_recent_project(opts)
+  local project_nvim = require 'project_nvim'
+  local recent_projects = project_nvim.get_recent_projects()
+
+  local mods = opts.mods or ''
+  local prompt_prefix = (mods ~= '') and ('[Open ' .. mods .. '] ') or ''
+
+  if #recent_projects == 0 then
+    vim.notify('No recent projects found!', vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.select(recent_projects, {
+    prompt = prompt_prefix .. 'Select Recent Project:',
+    kind = 'file',
+    format_item = function(item)
+      return vim.fn.fnamemodify(item, ':t') .. ' (' .. item .. ')'
+    end,
+  }, function(selected)
+    if selected then
+      local cmd = (mods ~= '') and mods .. ' new' or 'edit'
+
+      vim.cmd(cmd .. ' ' .. selected)
+      vim.cmd.cd(selected)
+      vim.notify('Switched to project: ' .. selected)
+    end
+  end)
+end
+
+vim.api.nvim_create_user_command('ProjectSelect', open_recent_project, {
+  desc = 'Open a recent project using project.nvim',
+})
+
 return {
   {
     'ahmedkhalf/project.nvim',
 
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
     event = 'VeryLazy',
     opts = {
       detection_methods = {
@@ -42,10 +72,8 @@ return {
     config = function(_, opts)
       require('project_nvim').setup(opts)
 
-      local telescope = require 'telescope'
-      telescope.load_extension 'projects'
-
-      vim.keymap.set('n', '<leader>sp', telescope.extensions.projects.projects, { desc = '[S]earch [P]rojects' })
+      vim.api.nvim_set_keymap('n', '<C-w>gsp', '<cmd>tab ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
+      vim.api.nvim_set_keymap('n', 'gsp', '<cmd>ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
     end,
   },
 

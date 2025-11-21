@@ -2,6 +2,10 @@ vim.opt.sessionoptions:append 'globals,localoptions'
 
 local config_group = vim.api.nvim_create_augroup('MyConfigGroup', {}) -- A global group for all your config autocommands
 
+local project_root_markers = {
+  '.git',
+}
+
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = 'SessionSavePre',
   group = config_group,
@@ -53,20 +57,38 @@ vim.api.nvim_create_user_command('ProjectSelect', open_recent_project, {
   desc = 'Open a recent project using project.nvim',
 })
 
+vim.api.nvim_create_autocmd({ 'VimEnter', 'BufEnter' }, {
+  nested = true,
+  callback = function()
+    if vim.bo.filetype ~= 'oil' then
+      return
+    end
+
+    local oil_dirname = require('oil').get_current_dir()
+    if not oil_dirname then
+      -- throw error!
+      vim.notify('Could not get oil current dir', vim.log.levels.ERROR)
+      return
+    end
+
+    local project_path = vim.fs.root(oil_dirname, project_root_markers)
+    if project_path then
+      require('project_nvim.project').set_pwd(project_path, 'vim.fs.root')
+    end
+  end,
+})
+
 return {
   {
     'ahmedkhalf/project.nvim',
 
     event = 'VeryLazy',
     opts = {
-      detection_methods = {
-        'pattern',
-        -- 'lsp'
-      },
-      ignore_lsp = { 'lua_ls' },
-      patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package-lock.json', '.sln' },
-      ---@usage When set to false, you will get a message when project.nvim changes your directory.
+      detection_methods = { 'pattern' },
+      patterns = project_root_markers,
+      -- I'd like to norice when the project root changes
       silent_chdir = false,
+      -- allow open projects alongside each other in different splits
       scope_chdir = 'win',
     },
     config = function(_, opts)

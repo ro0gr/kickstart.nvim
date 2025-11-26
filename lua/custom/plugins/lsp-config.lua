@@ -8,6 +8,7 @@ return {
     { 'williamboman/mason.nvim', opts = {} },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    -- 'b0o/SchemaStore.nvim',
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -204,11 +205,7 @@ return {
       },
       cspell = {},
       glint = {},
-      jsonls = {
-        init_options = {
-          provideFormatter = true,
-        },
-      },
+      jsonls = {},
       marksman = {},
       yamlls = {},
       pyright = {},

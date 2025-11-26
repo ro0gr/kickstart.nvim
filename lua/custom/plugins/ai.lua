@@ -1,4 +1,5 @@
 return {
+  -- TODO: try another plugin to be able to switch between models of different providers
   {
     'github/copilot.vim',
     config = function()

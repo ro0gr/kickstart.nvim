@@ -205,26 +205,6 @@ return {
   },
 
   {
-    'b0o/SchemaStore.nvim',
-    opts = {},
-    dependencies = { 'neovim/nvim-lspconfig' },
-    config = function()
-      require('lspconfig').jsonls.setup {
-        settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
-            validate = { enable = true },
-          },
-          yaml = {
-            schemas = require('schemastore').yaml.schemas(),
-            validate = { enable = true },
-          },
-        },
-      }
-    end,
-  },
-
-  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     ---@module "quicker"

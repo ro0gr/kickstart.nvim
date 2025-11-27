@@ -1,8 +1,36 @@
 {
   "plugins": {
+    "caret.nvim": {
+      "rev": "62a18089e5eedc329dea7fb5f1436d1c1bf672b1",
+      "src": "https://github.com/projekt0n/caret.nvim"
+    },
+    "catppuccin": {
+      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "edge": {
+      "rev": "4145071bb0ea909511fa9a444eec80367b11296f",
+      "src": "https://github.com/sainnhe/edge"
+    },
+    "everforest": {
+      "rev": "484dd560dccb2d2842685c441ad2b54a54ffef1b",
+      "src": "https://github.com/sainnhe/everforest"
+    },
     "gitsigns.nvim": {
       "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "gruvbox.nvim": {
+      "rev": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim"
+    },
+    "kanagawa.nvim": {
+      "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
+    "melange-nvim": {
+      "rev": "ce42f6b629beeaa00591ba73a77d3eeac4cf28ce",
+      "src": "https://github.com/savq/melange-nvim"
     },
     "nvim-treesitter": {
       "rev": "c5871d9d870c866fea9f271f1a3b3f29049a4793",
@@ -21,6 +49,18 @@
       "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "papercolor-theme": {
+      "rev": "0cfe64ffb24c21a6101b5f994ca342a74c977aef",
+      "src": "https://github.com/NLKNguyen/papercolor-theme"
+    },
+    "rose-pine": {
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
+      "src": "https://github.com/rose-pine/neovim"
+    },
+    "vim-colors-solarized": {
+      "rev": "528a59f26d12278698bb946f8fb82a63711eec21",
+      "src": "https://github.com/altercation/vim-colors-solarized"
+    },
     "vim-fubitive": {
       "rev": "c85ca8fa2098aa05e816f5d0839a0dad6bfcca5a",
       "src": "https://github.com/tommcdo/vim-fubitive"
@@ -28,6 +68,10 @@
     "vim-fugitive": {
       "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
       "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-one": {
+      "rev": "187f5c85b682c1933f8780d4d419c55d26a82e24",
+      "src": "https://github.com/rakr/vim-one"
     },
     "vim-rhubarb": {
       "rev": "5496d7c94581c4c9ad7430357449bb57fc59f501",
@@ -40,6 +84,10 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
+    },
+    "zenbones.nvim": {
+      "rev": "a934bc07d2ed4a98b74526c172d7f043736d8935",
+      "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }
 }

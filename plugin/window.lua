@@ -1,11 +1,4 @@
-require 'custom.plugins.window.recent-window'
-
-vim.cmd 'cab Q q'
-vim.cmd 'cab W w'
-vim.cmd 'cab Wq wq'
-vim.cmd 'cab Qa qa'
-
-function update_color_column_color()
+local function update_color_column_color()
   vim.api.nvim_set_hl(0, 'ColorColumn', { link = 'CursorLine' })
 end
 
@@ -29,7 +22,7 @@ local function update_dim_colors()
   vim.api.nvim_set_hl(0, 'NormalNC', { bg = dim_bg })
 end
 
--- Autocommands to update highlights when switching windows
+-- update highlights when switching windows
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = '*',
   callback = function()
@@ -71,47 +64,7 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
-vim.api.nvim_create_user_command('ResizeWindow', function()
-  vim.b.focus_config = {
-    autoresize = {
-      enable = true,
-    },
-  }
-
-  local focus = require 'focus'
-  focus.resize()
-end, {})
-vim.keymap.set('n', '<c-w>!', ':ResizeWindow<CR>', { noremap = true, silent = true })
-
 vim.schedule(function()
   update_color_column_color()
   update_dim_colors()
 end)
-
-return {
-  'beauwilliams/focus.nvim',
-  config = function()
-    local focus = require 'focus'
-    focus.setup {
-      -- we just need windows auto-resize, which is enabled by default, and
-      -- we don't need any other features, so let's disable everything enabled
-      -- by default.
-      ui = {
-        -- hybridnumber = false, -- Display hybrid line numbers in the focussed window only
-        -- absolutenumber_unfocussed = false, -- Preserve absolute numbers in the unfocussed windows
-
-        -- cursorline = true, -- Display a cursorline in the focussed window only
-        -- cursorcolumn = true, -- Display cursorcolumn in the focussed window only
-        -- winhighlight = true, -- auto highlighting for focussed/unfocussed windows
-        --
-        -- this is true by default, so let's disable it
-        signcolumn = false,
-      },
-      autoresize = {
-        enable = false,
-      },
-    }
-
-    vim.cmd 'cab tf FocusToggle'
-  end,
-}

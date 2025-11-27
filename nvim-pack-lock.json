@@ -16,6 +16,10 @@
       "rev": "484dd560dccb2d2842685c441ad2b54a54ffef1b",
       "src": "https://github.com/sainnhe/everforest"
     },
+    "focus.nvim": {
+      "rev": "26a755c363284547196ceb258a83f92608d7979b",
+      "src": "https://github.com/beauwilliams/focus.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
       "src": "https://github.com/lewis6991/gitsigns.nvim"

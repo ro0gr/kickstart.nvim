@@ -1,16 +1,3 @@
---- Terminal title configuration ---
-vim.o.title = true
-
-local function update_title()
-  local cwd = vim.fn.getcwd()
-  local formatted_cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-  vim.o.titlestring = 'nvim: ' .. formatted_cwd
-end
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'DirChanged' }, {
-  callback = update_title,
-})
-
 -- borrowed from https://www.reddit.com/r/neovim/comments/1j9fy2w/comment/mhec1ru/
 vim.opt.diffopt = {
   'internal',

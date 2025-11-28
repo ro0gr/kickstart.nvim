@@ -202,9 +202,4 @@ return {
       fzf_lua.register_ui_select()
     end,
   },
-
-  {
-    'f-person/auto-dark-mode.nvim',
-    opts = {},
-  },
 }

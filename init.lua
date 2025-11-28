@@ -172,3 +172,11 @@ end
 vim.api.nvim_create_autocmd({ 'BufEnter', 'DirChanged' }, {
   callback = update_title,
 })
+
+-- misc plugins
+
+vim.pack.add {
+  'https://github.com/f-person/auto-dark-mode.nvim',
+}
+
+require('auto-dark-mode').setup {}

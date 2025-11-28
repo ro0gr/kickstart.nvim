@@ -165,7 +165,6 @@ end
 vim.o.title = true
 
 local function update_title()
-  local cwd = vim.fn.getcwd()
   local formatted_cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
   vim.o.titlestring = 'nvim: ' .. formatted_cwd
 end

@@ -18,20 +18,52 @@ local formatters = {
 require('mason-tool-installer').setup {
   ensure_installed = vim.tbl_extend('force', formatters, {
     -- 'cspell',
-    -- 'css-lsp',
-    -- 'css-variables-language-server',
-    -- 'ember-language-server',
+    'css-lsp',
+    'css-variables-language-server',
+    'ember-language-server',
     -- 'emmet-ls',
-    -- 'glint',
-    -- 'html-lsp',
-    -- 'json-lsp',
+    'glint',
+    'html-lsp',
+    'json-lsp',
     -- 'lua-language-server',
     -- 'marksman',
     -- 'pyright',
     -- 'spectral-language-server',
-    -- 'typescript-language-server',
-    -- 'yaml-language-server',
+    'yaml-language-server',
+    'tsgo',
   }),
   auto_update = true,
   run_on_start = true,
 }
+
+vim.pack.add {
+  'https://github.com/neovim/nvim-lspconfig',
+}
+
+vim.lsp.enable 'tsgo'
+vim.lsp.enable 'ember'
+vim.lsp.enable 'css_variables'
+
+vim.lsp.config('glint', {
+  -- remove package.json, cause isn't really insufficient to identify a Glint project
+  root_markers = { '.glintrc.yml', '.glintrc', '.glintrc.json', '.glintrc.js', 'glint.config.js' },
+})
+vim.lsp.enable 'glint'
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+vim.lsp.config('html', {
+  capabilities = capabilities,
+})
+vim.lsp.enable 'html'
+
+vim.lsp.config('cssls', {
+  capabilities = capabilities,
+})
+vim.lsp.enable 'cssls'
+--
+vim.lsp.config('jsonls', {
+  capabilities = capabilities,
+})
+vim.lsp.enable 'jsonls'

@@ -78,36 +78,27 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'BufEnter' }, {
   end,
 })
 
-return {
-  {
-    'ahmedkhalf/project.nvim',
+vim.pack.add {
+  'https://github.com/ahmedkhalf/project.nvim',
+}
 
-    event = 'VeryLazy',
-    opts = {
-      detection_methods = { 'pattern' },
-      patterns = project_root_markers,
-      -- I'd like to norice when the project root changes
-      silent_chdir = false,
-      -- allow open projects alongside each other in different splits
-      scope_chdir = 'win',
-    },
-    config = function(_, opts)
-      require('project_nvim').setup(opts)
+require('project_nvim').setup {
+  detection_methods = { 'pattern' },
+  patterns = project_root_markers,
+  -- I'd like to norice when the project root changes
+  silent_chdir = false,
+  -- allow open projects alongside each other in different splits
+  scope_chdir = 'win',
+}
+vim.api.nvim_set_keymap('n', '<C-w>gsp', '<cmd>tab ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
 
-      vim.api.nvim_set_keymap('n', '<C-w>gsp', '<cmd>tab ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
-      vim.api.nvim_set_keymap('n', 'gsp', '<cmd>ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
-    end,
-  },
+vim.api.nvim_set_keymap('n', 'gsp', '<cmd>ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
 
-  {
-    'Shatur/neovim-session-manager',
-    lazy = false,
-    priority = 10000,
-    config = function()
-      local session_manager = require 'session_manager'
-      session_manager.setup {
-        autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
-      }
-    end,
-  },
+vim.pack.add {
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/Shatur/neovim-session-manager',
+}
+
+require('session_manager').setup {
+  autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
 }

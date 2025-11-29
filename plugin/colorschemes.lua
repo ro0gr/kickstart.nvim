@@ -8,6 +8,7 @@ vim.pack.add {
   'https://github.com/sainnhe/edge',
   'https://github.com/sainnhe/everforest',
   'https://github.com/savq/melange-nvim',
+  'https://github.com/rktjmp/lush.nvim', -- dependency for zenbones
   'https://github.com/zenbones-theme/zenbones.nvim',
   { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
   { src = 'https://github.com/rose-pine/neovim', name = 'rose-pine' },

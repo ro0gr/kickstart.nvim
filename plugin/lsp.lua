@@ -25,7 +25,7 @@ require('mason-tool-installer').setup {
     'glint',
     'html-lsp',
     'json-lsp',
-    -- 'lua-language-server',
+    'lua-language-server',
     -- 'marksman',
     -- 'pyright',
     -- 'spectral-language-server',
@@ -67,3 +67,21 @@ vim.lsp.config('jsonls', {
   capabilities = capabilities,
 })
 vim.lsp.enable 'jsonls'
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          -- Depending on the usage, you might want to add additional paths
+          -- here.
+          '${3rd}/luv/library',
+          -- '${3rd}/busted/library'
+        },
+      },
+    },
+  },
+})
+vim.lsp.enable 'lua_ls'

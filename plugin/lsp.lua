@@ -20,6 +20,8 @@ require('mason-tool-installer').setup {
     -- 'cspell',
     'css-lsp',
     'css-variables-language-server',
+    -- TODO: check if conform can work with this and remove eslint_d then
+    'eslint-lsp',
     'ember-language-server',
     -- 'emmet-ls',
     'glint',
@@ -43,6 +45,7 @@ vim.pack.add {
 vim.lsp.enable 'tsgo'
 vim.lsp.enable 'ember'
 vim.lsp.enable 'css_variables'
+vim.lsp.enable 'eslint'
 
 vim.lsp.config('glint', {
   -- remove package.json, cause isn't really insufficient to identify a Glint project

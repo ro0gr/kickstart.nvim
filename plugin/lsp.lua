@@ -1,10 +1,10 @@
+-- TODO:
+-- * check if conform can work with eslint-lsp and remove eslint_d then
+-- * setup ai lsp server
+-- * configure schemastore for jsonls and yamlls
+
 vim.pack.add {
   'https://github.com/williamboman/mason.nvim',
-}
-
-require('mason').setup()
-
-vim.pack.add {
   'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim',
 }
 
@@ -15,12 +15,12 @@ local formatters = {
   'stylua',
 }
 
+require('mason').setup()
 require('mason-tool-installer').setup {
   ensure_installed = vim.tbl_extend('force', formatters, {
     -- 'cspell',
     'css-lsp',
     'css-variables-language-server',
-    -- TODO: check if conform can work with this and remove eslint_d then
     'eslint-lsp',
     'ember-language-server',
     -- 'emmet-ls',
@@ -34,7 +34,7 @@ require('mason-tool-installer').setup {
     'yaml-language-server',
     'tsgo',
   }),
-  auto_update = true,
+  auto_update = false,
   run_on_start = true,
 }
 

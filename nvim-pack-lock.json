@@ -16,6 +16,10 @@
       "rev": "4993e07fac6679d0a5005aa7499e0bad2bd39f19",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "copilot.vim": {
+      "rev": "f89e977c87180519ba3b942200e3d05b17b1e2fc",
+      "src": "https://github.com/github/copilot.vim"
+    },
     "edge": {
       "rev": "4145071bb0ea909511fa9a444eec80367b11296f",
       "src": "https://github.com/sainnhe/edge"

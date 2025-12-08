@@ -24,39 +24,6 @@ vim.api.nvim_create_autocmd({ 'User' }, {
   end,
 })
 
-local function open_recent_project(opts)
-  local project_nvim = require 'project_nvim'
-  local recent_projects = project_nvim.get_recent_projects()
-
-  local mods = opts.mods or ''
-  local prompt_prefix = (mods ~= '') and ('[Open ' .. mods .. '] ') or ''
-
-  if #recent_projects == 0 then
-    vim.notify('No recent projects found!', vim.log.levels.WARN)
-    return
-  end
-
-  vim.ui.select(recent_projects, {
-    prompt = prompt_prefix .. 'Select Recent Project:',
-    kind = 'file',
-    format_item = function(item)
-      return vim.fn.fnamemodify(item, ':t') .. ' (' .. item .. ')'
-    end,
-  }, function(selected)
-    if selected then
-      local cmd = (mods ~= '') and mods .. ' new' or 'edit'
-
-      vim.cmd(cmd .. ' ' .. selected)
-      vim.cmd.cd(selected)
-      vim.notify('Switched to project: ' .. selected)
-    end
-  end)
-end
-
-vim.api.nvim_create_user_command('ProjectSelect', open_recent_project, {
-  desc = 'Open a recent project using project.nvim',
-})
-
 vim.api.nvim_create_autocmd({ 'VimEnter', 'BufEnter' }, {
   nested = true,
   callback = function()
@@ -90,9 +57,6 @@ require('project_nvim').setup {
   -- allow open projects alongside each other in different splits
   scope_chdir = 'win',
 }
-vim.api.nvim_set_keymap('n', '<C-w>gsp', '<cmd>tab ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
-
-vim.api.nvim_set_keymap('n', 'gsp', '<cmd>ProjectSelect<CR>', { noremap = true, silent = true, desc = '[S]earch [P]rojects' })
 
 vim.pack.add {
   'https://github.com/nvim-lua/plenary.nvim',
@@ -102,3 +66,36 @@ vim.pack.add {
 require('session_manager').setup {
   autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
 }
+
+vim.api.nvim_create_user_command('Projects', function(opts)
+  if not opts.args or opts.args == '' then
+    return
+  end
+
+  local selected = opts.args
+  local mods = opts.mods or ''
+  local cmd = (mods ~= '') and mods .. ' new' or 'edit'
+
+  vim.cmd(cmd .. ' ' .. selected)
+  vim.cmd.lcd(selected)
+  vim.notify('Switched to project: ' .. selected)
+end, {
+  desc = 'Open a recent project using project.nvim',
+  nargs = 1,
+  complete = function(arglead)
+    local project_nvim = require 'project_nvim'
+    local recent_projects = project_nvim.get_recent_projects()
+
+    -- If no input yet, return all projects
+    if arglead == '' then
+      return recent_projects
+    end
+
+    -- Use Neovim's built-in matchfuzzy to filter and rank
+    return vim.fn.matchfuzzy(recent_projects, arglead)
+  end,
+})
+
+vim.api.nvim_set_keymap('n', '<C-w>gsp', ':tab Projects<Space>', { noremap = true, desc = '[G]o to [P]roject' })
+vim.api.nvim_set_keymap('n', 'gsp', ':Projects<Space>', { noremap = true, desc = '[G]o to [P]roject' })
+vim.cmd 'cabbrev sp Projects'

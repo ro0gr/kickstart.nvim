@@ -88,3 +88,11 @@ vim.lsp.config('lua_ls', {
   },
 })
 vim.lsp.enable 'lua_ls'
+
+vim.api.nvim_create_autocmd('LspAttach', { command = 'setlocal complete=o' })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf)
+  end,
+})

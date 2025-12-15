@@ -95,10 +95,16 @@ vim.opt.foldnestmax = 10
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- make sure that :find and gf search in subdirectories
+vim.opt.path = '.,**'
+
+-- Enhanced command-line completion
 vim.opt.wildoptions:append 'fuzzy'
-vim.opt.wildmode = 'full'
-vim.opt.completeopt:append 'fuzzy,noselect'
-vim.opt.completeopt:append 'preview'
+vim.opt.wildmode = 'noselect:full,full'
+
+-- autocomplete
+vim.opt.completeopt = 'fuzzy,popup,noselect,menuone,preview'
 
 vim.keymap.set('n', '<M-->', '<CMD>e %:p:h<CR>', { desc = 'Open parent directory' })
 

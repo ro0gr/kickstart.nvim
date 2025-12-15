@@ -187,8 +187,15 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'DirChanged' }, {
 
 vim.pack.add {
   'https://github.com/f-person/auto-dark-mode.nvim',
+}
+require('auto-dark-mode').setup {}
+
+vim.pack.add {
   'https://github.com/kylechui/nvim-surround',
 }
-
-require('auto-dark-mode').setup {}
 require('nvim-surround').setup {}
+
+vim.pack.add {
+  'https://github.com/nvim-treesitter/nvim-treesitter-context',
+}
+require('treesitter-context').setup {}

@@ -99,6 +99,8 @@ vim.cmd 'cab gc Git commit'
 vim.cmd 'cab gca Git commit --amend'
 vim.cmd 'cab gw tab Git show'
 vim.cmd 'cab gco Git co '
+vim.cmd 'cab gb vert Git branch'
+vim.cmd 'cab gbm Git branch -m '
 
 -- Toggle the Fugitive buffer
 -- If the buffer is not focused, open it. If it is focused, close it.

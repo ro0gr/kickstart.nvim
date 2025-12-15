@@ -104,28 +104,6 @@ return {
   },
 
   {
-    'nvim-treesitter/nvim-treesitter-context',
-    opts = {
-      -- mode = 'topline',
-    },
-  },
-
-  {
-    'hedyhli/outline.nvim',
-    lazy = true,
-    cmd = { 'Outline', 'OutlineOpen' },
-    keys = { -- Example mapping to toggle outline
-      { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
-    },
-    opts = {
-      outline_window = {
-        position = 'left',
-      },
-      -- Your setup opts here
-    },
-  },
-
-  {
     'brenoprata10/nvim-highlight-colors',
     opts = {
       render = 'virtual',
@@ -134,61 +112,10 @@ return {
   },
 
   {
-    'chrishrb/gx.nvim',
-    keys = { { 'gx', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
-    cmd = { 'Browse' },
-    init = function()
-      vim.g.netrw_nogx = 1 -- disable netrw gx
-    end,
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = true, -- default settings
-  },
-
-  {
-    'dgagn/diagflow.nvim',
-    event = 'LspAttach',
-    enabled = false,
-    opts = {},
-  },
-
-  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     ---@module "quicker"
     ---@type quicker.SetupOptions
     opts = {},
-  },
-
-  {
-    'tummetott/unimpaired.nvim',
-    event = 'VeryLazy',
-    opts = {
-      keymaps = {
-        previous_file = {
-          mapping = '[f',
-          description = 'Previous file in directory. :colder in qflist',
-          dot_repeat = false,
-        },
-        next_file = {
-          mapping = ']f',
-          description = 'Next file in directory. :cnewer in qflist',
-          dot_repeat = false,
-        },
-      },
-      -- Disable the default mappings if you prefer to define your own mappings
-      default_keymaps = false,
-      -- add options here if you wish to override the default settings
-    },
-  },
-
-  {
-    'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {},
-    config = function(_, opts)
-      local fzf_lua = require 'fzf-lua'
-      fzf_lua.setup(opts)
-      fzf_lua.register_ui_select()
-    end,
   },
 }

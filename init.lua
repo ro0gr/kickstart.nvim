@@ -201,3 +201,8 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
 }
 require('treesitter-context').setup {}
+
+vim.pack.add {
+  'https://github.com/stevearc/quicker.nvim',
+}
+require('quicker').setup {}

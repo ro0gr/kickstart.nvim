@@ -52,7 +52,7 @@ vim.pack.add {
 require('project_nvim').setup {
   detection_methods = { 'pattern' },
   patterns = project_root_markers,
-  -- I'd like to norice when the project root changes
+  -- I'd like to notice when the project root changes
   silent_chdir = false,
   -- allow open projects alongside each other in different splits
   scope_chdir = 'win',
@@ -91,8 +91,8 @@ end, {
       return recent_projects
     end
 
-    -- Use Neovim's built-in matchfuzzy to filter and rank
-    return vim.fn.matchfuzzy(recent_projects, arglead)
+    local utils = require 'utils'
+    return utils.match_with_wildoptions(recent_projects, arglead)
   end,
 })
 

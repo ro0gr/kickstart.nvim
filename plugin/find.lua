@@ -19,7 +19,8 @@ local find_complete_func = function(arg)
     return all_files
   end
 
-  return vim.fn.matchfuzzy(all_files, arg)
+  local utils = require 'utils'
+  return utils.match_with_wildoptions(all_files, arg)
 end
 
 _G.FindFunct = find_complete_func

@@ -101,7 +101,7 @@ vim.opt.path = '.,**'
 
 -- Enhanced command-line completion
 vim.opt.wildoptions:append 'fuzzy'
-vim.opt.wildmode = 'noselect:full,full'
+vim.opt.wildmode = 'noselect:lastused,full'
 
 -- autocomplete
 vim.o.autocomplete = false

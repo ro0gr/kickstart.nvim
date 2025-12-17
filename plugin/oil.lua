@@ -113,12 +113,12 @@ require('oil').setup {
   keymaps = {
     ['~'] = false, -- I still want to use vim `~` for buffer editing
     ['`'] = false, -- disable for consistency with the `~`
+    ['gs'] = false, -- this overrides my 'gs*' keymaps for search
     -- only allow change dir per buffer
     ['gcd'] = 'actions.tcd',
     ['<leader>cd'] = 'actions.tcd',
-    ['gs'] = false,
-    ['gts'] = { 'actions.change_sort', mode = 'n' },
-    ['gtc'] = { OilToggleColumns, mode = 'n', desc = 'Toggle columns' },
+    ['<leader>ts'] = { 'actions.change_sort', mode = 'n' },
+    ['<leader>tc'] = { OilToggleColumns, mode = 'n', desc = 'Toggle columns' },
   },
 }
 

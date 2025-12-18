@@ -83,27 +83,6 @@ return {
   },
 
   {
-    'mawkler/demicolon.nvim',
-    -- keys = { ';', ',', 't', 'f', 'T', 'F', ']', '[', ']d', '[d' }, -- Uncomment this to lazy load
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      require('demicolon').setup {
-        keymaps = {
-          repeat_motions = 'stateless',
-        },
-      }
-
-      local nxo = { 'n', 'x', 'o' }
-
-      vim.keymap.set(nxo, ';', require('demicolon.repeat_jump').next)
-      vim.keymap.set(nxo, ',', require('demicolon.repeat_jump').prev)
-    end,
-  },
-
-  {
     'brenoprata10/nvim-highlight-colors',
     opts = {
       render = 'virtual',

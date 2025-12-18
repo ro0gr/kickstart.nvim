@@ -1,28 +1,28 @@
 vim.diagnostic.config {
-  severity_sort = true,
-  float = { border = 'rounded', source = 'if_many' },
-  underline = { severity = vim.diagnostic.severity.ERROR },
+  -- Show signs on top of any other sign, but only for warnings and errors
   signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = '󰅚 ',
-      [vim.diagnostic.severity.WARN] = '󰀪 ',
-      [vim.diagnostic.severity.INFO] = '󰋽 ',
-      [vim.diagnostic.severity.HINT] = '󰌶 ',
+    priority = 9999,
+    severity = {
+      min = vim.diagnostic.severity.WARN,
+      max = vim.diagnostic.severity.ERROR,
     },
   },
+
+  -- Show all diagnostics as underline (for their messages type `<Leader>ld`)
+  underline = { severity = vim.diagnostic.severity.ERROR },
+
+  -- Show more details immediately for errors on the current line
+  virtual_lines = false,
   virtual_text = {
-    source = 'if_many',
-    spacing = 2,
-    format = function(diagnostic)
-      local diagnostic_message = {
-        [vim.diagnostic.severity.ERROR] = diagnostic.message,
-        [vim.diagnostic.severity.WARN] = diagnostic.message,
-        [vim.diagnostic.severity.INFO] = diagnostic.message,
-        [vim.diagnostic.severity.HINT] = diagnostic.message,
-      }
-      return diagnostic_message[diagnostic.severity]
-    end,
+    current_line = true,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR,
+    },
   },
+
+  -- Don't update diagnostics when typing
+  update_in_insert = false,
 }
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })

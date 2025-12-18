@@ -24,6 +24,10 @@
       "rev": "f17afaeba2b0d8484f4e7b00594761ccd043e154",
       "src": "https://github.com/mawkler/demicolon.nvim"
     },
+    "doom-one.nvim": {
+      "rev": "beae92173315c7282f6897e666cfd67fbf0f3ac9",
+      "src": "https://github.com/NTBBloodbath/doom-one.nvim"
+    },
     "edge": {
       "rev": "4145071bb0ea909511fa9a444eec80367b11296f",
       "src": "https://github.com/sainnhe/edge"

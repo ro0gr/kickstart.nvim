@@ -89,6 +89,10 @@ vim.opt.foldminlines = 1
 vim.opt.foldnestmax = 10
 -- vim.opt.foldenable = false
 
+-- Unsure whether it's ghostty related, but cursor gets barely visible in when I navigate in cmdline mode
+-- so making it block to be more visible
+vim.opt.guicursor:append 'ci-ve:block'
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

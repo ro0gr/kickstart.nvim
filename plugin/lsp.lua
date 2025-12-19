@@ -1,6 +1,5 @@
 -- TODO:
 -- * check if conform can work with eslint-lsp and remove eslint_d then
--- * setup ai lsp server
 -- * configure schemastore for jsonls and yamlls
 
 vim.pack.add {

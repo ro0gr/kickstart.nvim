@@ -10,6 +10,8 @@ local find_complete_func = function(arg)
   local find_cmd
   if vim.fn.executable 'fd' == 1 then
     find_cmd = string.format('cd %s && fd --type f --hidden --exclude .git', vim.fn.shellescape(root))
+  elseif vim.fn.executable 'rg' == 1 then
+    find_cmd = string.format('cd %s && rg --files --hidden --glob "!.git/*"', vim.fn.shellescape(root))
   else
     find_cmd = string.format('cd %s && find . -type f -not -path "*/\\.git/*" | sed "s|^\\./||"', vim.fn.shellescape(root))
   end

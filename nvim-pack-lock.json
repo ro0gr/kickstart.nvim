@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "agentic.nvim": {
+      "rev": "c7bfa17e104031346ae670b0f7131bc02b01b9c3",
+      "src": "https://github.com/carlos-algms/agentic.nvim"
+    },
     "auto-dark-mode.nvim": {
       "rev": "e300259ec777a40b4b9e3c8e6ade203e78d15881",
       "src": "https://github.com/f-person/auto-dark-mode.nvim"
@@ -109,10 +113,6 @@
     "oil.nvim": {
       "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim"
-    },
-    "opencode.nvim": {
-      "rev": "bc42d98c8efb23022d32fde878b0c07018eb73a8",
-      "src": "https://github.com/NickvanDyke/opencode.nvim"
     },
     "papercolor-theme": {
       "rev": "0cfe64ffb24c21a6101b5f994ca342a74c977aef",

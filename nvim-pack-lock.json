@@ -68,6 +68,10 @@
       "rev": "ce42f6b629beeaa00591ba73a77d3eeac4cf28ce",
       "src": "https://github.com/savq/melange-nvim"
     },
+    "mini.pick": {
+      "rev": "6b7974543b17cf2e294993fc3d8545a342258232",
+      "src": "https://github.com/echasnovski/mini.pick"
+    },
     "neovim-session-manager": {
       "rev": "3409dc920d40bec4c901c0a122a80bee03d6d1e1",
       "src": "https://github.com/Shatur/neovim-session-manager"

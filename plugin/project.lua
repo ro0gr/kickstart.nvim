@@ -96,6 +96,7 @@ end, {
   end,
 })
 
-vim.api.nvim_set_keymap('n', '<C-w>gsp', ':tab Projects<Space>', { noremap = true, desc = '[G]o to [P]roject' })
-vim.api.nvim_set_keymap('n', 'gsp', ':Projects<Space>', { noremap = true, desc = '[G]o to [P]roject' })
+vim.cmd 'cabbrev tsp tab Projects'
+vim.cmd 'cabbrev vsp vert Projects'
+vim.cmd 'cabbrev ssp horizontal Projects'
 vim.cmd 'cabbrev sp Projects'

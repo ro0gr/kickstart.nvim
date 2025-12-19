@@ -9,3 +9,14 @@ vim.opt.path = '.,**'
 vim.opt.wildoptions:append 'fuzzy'
 vim.opt.wildmode = 'noselect:lastused,full'
 vim.opt.pumborder = 'rounded'
+
+-- Accept best match in wildmenu when pressing Enter
+vim.keymap.set('c', '<CR>', function()
+  -- If wildmenu is active it means nothing is selected.
+  if vim.fn.wildmenumode() == 1 then
+    -- Select first item then accept
+    return '<C-n><CR>'
+  else
+    return '<CR>'
+  end
+end, { expr = true, desc = 'Accept best match in wildmenu' })

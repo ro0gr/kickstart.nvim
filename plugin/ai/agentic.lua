@@ -17,3 +17,5 @@ end, { expr = true, desc = 'Add range to agentic([A]I)' })
 vim.keymap.set('n', '<Leader>as', function()
   require('agentic').new_session()
 end, { desc = 'New [A]gentic [S]ession' })
+
+vim.o.autoread = true

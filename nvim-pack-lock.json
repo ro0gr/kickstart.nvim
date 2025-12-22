@@ -1,7 +1,7 @@
 {
   "plugins": {
     "agentic.nvim": {
-      "rev": "c7bfa17e104031346ae670b0f7131bc02b01b9c3",
+      "rev": "98abe20edeac686de874a6612512b73d5c5cfed8",
       "src": "https://github.com/carlos-algms/agentic.nvim"
     },
     "auto-dark-mode.nvim": {
@@ -13,11 +13,11 @@
       "src": "https://github.com/projekt0n/caret.nvim"
     },
     "catppuccin": {
-      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
+      "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
-      "rev": "4993e07fac6679d0a5005aa7499e0bad2bd39f19",
+      "rev": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.vim": {
@@ -33,11 +33,11 @@
       "src": "https://github.com/NTBBloodbath/doom-one.nvim"
     },
     "edge": {
-      "rev": "4145071bb0ea909511fa9a444eec80367b11296f",
+      "rev": "b7dfb8e3c42a9393b68e284eac9b7a5973f24fe1",
       "src": "https://github.com/sainnhe/edge"
     },
     "everforest": {
-      "rev": "484dd560dccb2d2842685c441ad2b54a54ffef1b",
+      "rev": "b10ed9a8b37d6b7448908be98ff8f58f550adc48",
       "src": "https://github.com/sainnhe/everforest"
     },
     "focus.nvim": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/beauwilliams/focus.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruvbox.nvim": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "mini.pick": {
-      "rev": "6b7974543b17cf2e294993fc3d8545a342258232",
+      "rev": "c488bbaa74b4b9e9ba49ebaffdd9f19b15b64a4f",
       "src": "https://github.com/echasnovski/mini.pick"
     },
     "neovim-session-manager": {
@@ -81,15 +81,15 @@
       "src": "https://github.com/Shatur/neovim-session-manager"
     },
     "nvim-lspconfig": {
-      "rev": "07f4e93de92e8d4ea7ab99602e3a8c9ac0fb778a",
+      "rev": "361dd9d5f3f8ae3d8c721f4f2c21847050538b1f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
-      "rev": "fcfa7e02323d57bfacc3a141f8a74498e1522064",
+      "rev": "1098d7b3c34adcfa7feb3289ee434529abd4afd1",
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "c5871d9d870c866fea9f271f1a3b3f29049a4793",
+      "rev": "6e42d823ce0a5a76180c473c119c7677738a09d1",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -98,12 +98,12 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "76deedf0f1cec4496ef8d49b6d1f020f6d0c6ec9",
+      "rev": "e91c585ac0ee760198dabc1fad2e6227effdcd5e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
+      "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
@@ -111,7 +111,7 @@
       "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
     "oil.nvim": {
-      "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
+      "rev": "756dec855b4811f2d27f067a3aca477f368d99f5",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "papercolor-theme": {
@@ -127,7 +127,7 @@
       "src": "https://github.com/ahmedkhalf/project.nvim"
     },
     "quicker.nvim": {
-      "rev": "9983d4b28881e1df626e3682167b45c284d4da8c",
+      "rev": "ad367a8f27aff3361db43ea2f41cd505ab573617",
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "rose-pine": {
@@ -163,7 +163,7 @@
       "src": "https://github.com/folke/which-key.nvim"
     },
     "zenbones.nvim": {
-      "rev": "a934bc07d2ed4a98b74526c172d7f043736d8935",
+      "rev": "4635a3f46d1066975d1074cd9f61f93cb1e32f64",
       "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }

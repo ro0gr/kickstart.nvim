@@ -151,15 +151,7 @@ end
 
 --- Terminal title configuration ---
 vim.o.title = true
-
-local function update_title()
-  local formatted_cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-  vim.o.titlestring = 'nvim: ' .. formatted_cwd
-end
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'DirChanged' }, {
-  callback = update_title,
-})
+require('utils.title').setup()
 
 -- misc plugins
 

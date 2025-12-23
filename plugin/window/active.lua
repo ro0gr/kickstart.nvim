@@ -37,16 +37,6 @@ vim.api.nvim_create_autocmd('WinLeave', {
   end,
 })
 
--- Automatically update colors when the colorscheme changes
-vim.api.nvim_create_autocmd('ColorScheme', {
-  pattern = '*',
-  callback = function()
-    update_dim_colors()
-
-    update_color_column_color()
-  end,
-})
-
 -- Highlight current line only on focused window
 vim.api.nvim_create_autocmd('WinLeave', {
   desc = 'Hide cursor line when leaving window',
@@ -64,7 +54,21 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
-vim.schedule(function()
-  update_color_column_color()
+local update_callback = function()
   update_dim_colors()
-end)
+  update_color_column_color()
+end
+
+-- Automatically update colors when the colorscheme changes
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = update_callback,
+})
+
+-- also update on background change
+vim.api.nvim_create_autocmd('OptionSet', {
+  pattern = 'background',
+  callback = update_callback,
+})
+
+vim.schedule(update_callback)

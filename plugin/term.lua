@@ -5,11 +5,11 @@ end
 vim.api.nvim_create_user_command('TermProjectFocus', function()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
   local bufnr = -1
-  local term_buf_title = 'tmux(' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':~') .. ')'
+  local cmd = build_tmux_cmd(project_name)
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     local buf_name = vim.api.nvim_buf_get_name(buf)
-    if string.find(buf_name, term_buf_title, 1, true) then
+    if string.find(buf_name, cmd, 1, true) then
       bufnr = buf
       break
     end
@@ -17,8 +17,7 @@ vim.api.nvim_create_user_command('TermProjectFocus', function()
 
   if bufnr == -1 then
     vim.cmd 'topleft new'
-    vim.cmd('terminal ' .. build_tmux_cmd(project_name))
-    vim.api.nvim_buf_set_name(0, term_buf_title)
+    vim.cmd('terminal ' .. cmd)
   else
     local win_found = false
     for _, win in ipairs(vim.api.nvim_list_wins()) do

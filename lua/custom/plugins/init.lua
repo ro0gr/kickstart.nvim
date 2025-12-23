@@ -17,14 +17,6 @@ end, { noremap = true, silent = true })
 -- redo last command
 vim.keymap.set('n', '<M-.>', ':normal! @:<CR>', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<Leader>Tc', ':TSContextToggle<CR>', { noremap = true })
-
-vim.opt.wrap = false -- Disable line wrapping
-
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
   {
     'JoosepAlviste/nvim-ts-context-commentstring',

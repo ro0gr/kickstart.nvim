@@ -50,5 +50,45 @@ end, {
 vim.keymap.set({ 'n', 't', 'i' }, '<M-t>', function()
   vim.cmd 'TermProjectFocus'
 end, {
-  desc = 'Open terminal with tmux session named after current working directory',
+  desc = 'Toggle [t]erminal with tmux session named after current working directory',
 })
+
+local function is_terminal_buffer()
+  return vim.bo.buftype == 'terminal'
+end
+
+local send_termcode = function(key)
+  local termcode = vim.api.nvim_replace_termcodes(key, true, false, true)
+  vim.api.nvim_feedkeys(termcode, 't', true)
+end
+
+local setup_terminal_keymap = function(key, desc)
+  vim.keymap.set('n', key, function()
+    if not is_terminal_buffer() then
+      -- Pass through normally for non-terminal buffers
+      return key
+    end
+
+    if vim.api.nvim_get_mode().mode == 't' then
+      send_termcode(key)
+      return ''
+    end
+
+    vim.schedule(function()
+      vim.cmd 'startinsert'
+
+      vim.defer_fn(function()
+        send_termcode(key)
+      end, 200)
+    end)
+
+    return ''
+  end, {
+    expr = true, -- Allows conditional return
+    silent = true,
+    desc = desc,
+  })
+end
+
+setup_terminal_keymap('<C-c>', 'Send Ctrl+c(interrupt) to terminal (auto-insert mode)')
+setup_terminal_keymap('<C-b>', 'Send Ctrl+b(tmux leader) to terminal (auto-insert mode)')

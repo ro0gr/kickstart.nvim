@@ -73,7 +73,6 @@ vim.opt.confirm = true
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
--- my options
 vim.o.spell = true
 vim.o.spelloptions = 'noplainbuffer,camel'
 vim.o.swapfile = false
@@ -99,21 +98,6 @@ vim.o.complete = 'o,.,w,b,u'
 vim.opt.completeopt = 'fuzzy,popup,noselect,menuone,preview'
 
 vim.keymap.set('n', '<M-->', '<CMD>e %:p:h<CR>', { desc = 'Open parent directory' })
-
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- `:` requires a shift key which often leads the first command latter to be uppercase,
--- like `:Wq` instead of `:wq`, which is super annoying.
---
--- see: https://stackoverflow.com/a/42904431/1879162
-vim.api.nvim_set_keymap('n', '<Space>', ':', { noremap = true })
-vim.api.nvim_set_keymap('v', '<Space>', ':', { noremap = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

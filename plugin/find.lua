@@ -2,9 +2,6 @@
 --  - ctrl-q to send opened wildmenu completions to quickfix list.
 
 vim.cmd 'cabbrev sf find'
-vim.cmd 'cabbrev ssf sfind'
-vim.cmd 'cabbrev vsf vertical sfind'
-vim.cmd 'cabbrev tsf tabfind'
 
 local find_complete_func = function(arg)
   -- Get git root or fallback to cwd
@@ -48,33 +45,3 @@ vim.api.nvim_create_autocmd('CmdlineChanged', {
     vim.fn.wildtrigger()
   end,
 })
-
-local function find_to_split(split_cmd, fallback_key)
-  return function()
-    local cmdline = vim.fn.getcmdline()
-    local filename = cmdline:match '^%s*find%s+(.+)$'
-
-    if filename then
-      local resolved = vim.fn.findfile(filename, vim.o.path)
-
-      if resolved ~= '' then
-        -- Escape the path to handle spaces and special characters
-        local escaped_path = vim.fn.fnameescape(resolved)
-        return vim.api.nvim_replace_termcodes('<C-u>' .. split_cmd .. ' ' .. escaped_path .. '<CR>', true, false, true)
-      else
-        vim.schedule(function()
-          vim.notify('File not found: ' .. filename, vim.log.levels.ERROR)
-        end)
-        return ''
-      end
-    end
-
-    -- Not a find command, return the literal key that was pressed
-    return vim.api.nvim_replace_termcodes(fallback_key, true, false, true)
-  end
-end
-
--- Register the three keymaps
-vim.keymap.set('c', '<C-v>', find_to_split('vsplit', '<C-v>'), { expr = true, desc = 'Convert :find to :vsplit with resolved path' })
-vim.keymap.set('c', '<C-s>', find_to_split('split', '<C-s>'), { expr = true, desc = 'Convert :find to :split with resolved path' })
-vim.keymap.set('c', '<C-t>', find_to_split('tabedit', '<C-t>'), { expr = true, desc = 'Convert :find to :tabedit with resolved path' })

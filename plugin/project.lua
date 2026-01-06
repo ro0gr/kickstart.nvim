@@ -96,7 +96,4 @@ end, {
   end,
 })
 
-vim.cmd 'cabbrev tsp tab Projects'
-vim.cmd 'cabbrev vsp vert Projects'
-vim.cmd 'cabbrev ssp horizontal Projects'
 vim.cmd 'cabbrev sp Projects'

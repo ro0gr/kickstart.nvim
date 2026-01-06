@@ -17,3 +17,24 @@ vim.opt.path = '.,**'
 vim.opt.wildoptions:append 'fuzzy'
 vim.opt.wildmode = 'noselect:lastused,full'
 vim.opt.pumborder = 'rounded'
+
+-- Unfortunately, neovim currently doesn't support opening cmdline in splits or new tabs directly,
+--- for built-in commands like :find or custom commands.
+--- But I still need a general way to open cmdline in different standard targets (vsplit, split, tabnew).
+local function setup_open_target_keymap(key, open_cmd, desc)
+  vim.keymap.set('c', key, function()
+    -- if vim.fn.pumvisible() == 1 then
+    local cmdline = vim.fn.getcmdline()
+    vim.schedule(function()
+      vim.cmd(open_cmd)
+      vim.cmd(cmdline)
+    end)
+    return '<C-c>'
+    -- end
+    -- return key
+  end, { expr = true, noremap = true, desc = desc })
+end
+
+setup_open_target_keymap('<C-V>', 'vsplit', 'Open command line result in vertical split when pum is visible')
+setup_open_target_keymap('<C-S>', 'split', 'Open command line result in horizontal split when pum is visible')
+setup_open_target_keymap('<C-T>', 'tabnew', 'Open command line result in new tab when pum is visible')

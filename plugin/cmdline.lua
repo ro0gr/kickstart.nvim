@@ -18,6 +18,19 @@ vim.opt.wildoptions:append 'fuzzy'
 vim.opt.wildmode = 'noselect:lastused,full'
 vim.opt.pumborder = 'rounded'
 
+-- Auto-trigger command-line completion after typing 3 characters
+vim.api.nvim_create_autocmd('CmdlineChanged', {
+  pattern = ':',
+  callback = function()
+    local cmdline = vim.fn.getcmdline()
+    if #cmdline < 3 then
+      return
+    end
+
+    vim.fn.wildtrigger()
+  end,
+})
+
 -- Unfortunately, neovim currently doesn't support opening cmdline in splits or new tabs directly,
 --- for built-in commands like :find or custom commands.
 --- But I still need a general way to open cmdline in different standard targets (vsplit, split, tabnew).

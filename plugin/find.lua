@@ -28,20 +28,3 @@ end
 
 _G.FindFunct = find_complete_func
 vim.opt.findfunc = 'v:lua.FindFunct'
-
--- Auto-recalculate on cmdline changes
-vim.api.nvim_create_autocmd('CmdlineChanged', {
-  pattern = ':',
-  callback = function()
-    local cmdline = vim.fn.getcmdline()
-
-    -- Check if it's a find command
-    local is_find_cmd = cmdline:match '^s?find%s' or cmdline:match '^tabfind%s' or cmdline:match '^vertical%s+sfind%s'
-
-    if not is_find_cmd then
-      return
-    end
-
-    vim.fn.wildtrigger()
-  end,
-})

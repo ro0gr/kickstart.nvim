@@ -47,20 +47,11 @@ gitsigns.setup {
     -- normal mode
     map('n', 'ghs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
     map('n', 'ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
-    map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
-    map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-    map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
-    map('n', '<leader>hD', function()
-      gitsigns.diffthis '@'
-    end, { desc = 'git [D]iff against last commit' })
-    -- Toggles
-    map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-    map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
   end,
 }
 
-vim.cmd 'cab tgb Gitsigns blame'
-vim.cmd 'cab tgbl Gitsigns toggle_current_line_blame'
+vim.cmd 'cab gbl Gitsigns blame'
+vim.cmd 'cab gbll Gitsigns toggle_current_line_blame'
 vim.cmd 'cab gd Gitsigns diffthis'
 
 -- Fugitive and related plugins
@@ -77,35 +68,32 @@ vim.cmd 'cab G Git'
 --
 -- Use the `t` prefix as a "toggle" abbreviation.
 -- Initially I've tried to use just `g` but it conflicts with the `g//` command.
-vim.cmd 'cab tg \\| GitToggle'
-vim.cmd 'cab gs Git switch'
-vim.cmd 'cab gsc Git switch -c '
+vim.cmd 'cab gsw Git switch'
+vim.cmd 'cab gswc Git switch -c '
 vim.cmd 'cab gpl Git! pull origin '
 vim.cmd 'cab gps Git! push --force-with-lease '
 vim.cmd 'cab gf Git! fetch \\|'
 vim.cmd 'cab grs Git reset @~'
+
 -- log
-vim.cmd 'cab tgl tab Git log --decorate --graph -100'
-vim.cmd 'cab tglo tab Git log --decorate --graph --oneline'
-vim.cmd 'cab vgl vert Git log --decorate --graph -100'
-vim.cmd 'cab vglo vert Git log --decorate --graph --oneline'
-vim.cmd 'cab gl Git log --decorate --graph -100'
-vim.cmd 'cab glo Git log --decorate --graph --oneline'
+vim.cmd 'cab gl Git ++curwin log --decorate --graph -100'
+vim.cmd 'cab glo Git ++curwin log --decorate --graph --oneline'
+
 -- rebase
-vim.cmd 'cab gr Git rebase '
-vim.cmd 'cab gri Git rebase -i'
-vim.cmd 'cab gro Git rebase --onto'
-vim.cmd 'cab grc Git rebase --continue'
-vim.cmd 'cab gra Git rebase --abort'
+vim.cmd 'cab grb Git rebase '
+vim.cmd 'cab grbi Git rebase -i'
+vim.cmd 'cab grbo Git rebase --onto'
+vim.cmd 'cab grbc Git rebase --continue'
+vim.cmd 'cab grba Git rebase --abort'
 -- stash/unstash
 vim.cmd 'cab gst Git stash'
 vim.cmd 'cab grsh Git reset --hard '
 vim.cmd 'cab gc Git commit'
 vim.cmd 'cab gca Git commit --amend'
 vim.cmd 'cab gcp Git cherry-pick '
-vim.cmd 'cab gw tab Git show'
+vim.cmd 'cab gsh Git  ++curwin show'
 vim.cmd 'cab gco Git co '
-vim.cmd 'cab gb vert Git branch'
+vim.cmd 'cab gb Git ++curwin branch'
 vim.cmd 'cab gbm Git branch -m '
 
 -- Toggle the Fugitive buffer
@@ -130,7 +118,7 @@ vim.api.nvim_create_user_command('GitToggle', function()
   -- if fugitive buffer isn't focused
   if fugitive_buf == nil or current_buf ~= fugitive_buf then
     -- Open(or focus) it
-    vim.cmd 'vert Git'
+    vim.cmd 'Git'
   else
     vim.api.nvim_buf_delete(fugitive_buf, { force = true })
 

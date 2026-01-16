@@ -94,8 +94,6 @@ vim.o.autocomplete = false
 vim.o.complete = 'o,.,w,b,u'
 vim.opt.completeopt = 'fuzzy,popup,noselect,menuone,preview'
 
-vim.keymap.set('n', '<M-->', '<CMD>e %:p:h<CR>', { desc = 'Open parent directory' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

@@ -26,4 +26,4 @@ vim.keymap.set({ 'v' }, '<M-a>', function()
   return agentic.add_selection()
 end, { expr = true, desc = 'Add range to agentic([A]I)' })
 
-vim.o.autoread = true
+vim.g.autoread = true

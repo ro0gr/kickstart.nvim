@@ -104,6 +104,10 @@ require('oil').setup {
     end,
   },
 
+  preview_win = {
+    preview_method = 'load', -- Use "load" for image.nvim compatibility
+  },
+
   win_options = {
     -- make the oil-git-status work
     signcolumn = 'yes:1',

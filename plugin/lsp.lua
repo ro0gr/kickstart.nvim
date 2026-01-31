@@ -18,6 +18,7 @@ require('mason').setup()
 require('mason-tool-installer').setup {
   ensure_installed = vim.tbl_extend('force', formatters, {
     -- 'cspell',
+    'clangd',
     'css-lsp',
     'css-variables-language-server',
     'eslint-lsp',
@@ -45,6 +46,7 @@ vim.lsp.enable 'tsgo'
 vim.lsp.enable 'ember'
 vim.lsp.enable 'css_variables'
 vim.lsp.enable 'eslint'
+vim.lsp.enable 'clangd'
 
 vim.lsp.config('glint', {
   -- remove package.json, cause isn't really insufficient to identify a Glint project

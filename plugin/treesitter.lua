@@ -3,6 +3,7 @@ vim.pack.add {
 }
 
 require('nvim-treesitter').install {
+  'c',
   'glimmer',
   'javascript',
   'lua',

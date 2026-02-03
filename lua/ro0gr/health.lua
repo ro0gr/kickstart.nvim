@@ -1,3 +1,5 @@
+local min_version = '0.12'
+
 --[[
 --
 -- This file is not required for your own configuration,
@@ -12,7 +14,7 @@ local check_version = function()
     return
   end
 
-  if vim.version.ge(vim.version(), '0.10-dev') then
+  if vim.version.ge(vim.version(), min_version) then
     vim.health.ok(string.format("Neovim version is: '%s'", verstr))
   else
     vim.health.error(string.format("Neovim out of date: '%s'. Upgrade to latest stable or nightly", verstr))
@@ -20,7 +22,6 @@ local check_version = function()
 end
 
 local check_external_reqs = function()
-  -- Basic utils: `git`, `make`, `unzip`
   for _, exe in ipairs { 'git', 'make', 'rg', 'magick' } do
     local is_executable = vim.fn.executable(exe) == 1
     if is_executable then
@@ -35,7 +36,7 @@ end
 
 return {
   check = function()
-    vim.health.start 'kickstart.nvim'
+    vim.health.start 'ro0gr'
 
     vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
 

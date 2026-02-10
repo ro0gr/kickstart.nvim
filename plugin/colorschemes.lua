@@ -3,6 +3,7 @@ vim.pack.add {
   'https://github.com/NTBBloodbath/doom-one.nvim',
   'https://github.com/altercation/vim-colors-solarized',
   'https://github.com/ellisonleao/gruvbox.nvim',
+  'https://github.com/oskarnurm/koda.nvim',
   'https://github.com/projekt0n/caret.nvim',
   'https://github.com/rakr/vim-one',
   'https://github.com/rebelot/kanagawa.nvim',

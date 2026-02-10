@@ -5,6 +5,9 @@
 vim.api.nvim_set_keymap('n', '<Space>', ':', { noremap = true })
 vim.api.nvim_set_keymap('v', '<Space>', ':', { noremap = true })
 
+-- Open buffer list and select first item
+vim.keymap.set('n', '<C-n>', ':b <Tab><C-n>', { noremap = true, desc = 'Open buffer list and select first' })
+
 --
 -- Unsure whether it's ghostty related, but cursor gets barely visible in when I navigate in cmdline mode
 -- so making it block to be more visible
@@ -16,20 +19,8 @@ vim.opt.path = '.,**'
 -- Enhanced command-line completion
 vim.opt.wildoptions:append 'fuzzy'
 vim.opt.wildmode = 'noselect:lastused,full'
+vim.opt.wildcharm = vim.fn.char2nr '\t'
 vim.opt.pumborder = 'rounded'
-
--- Auto-trigger command-line completion after typing 3 characters
-vim.api.nvim_create_autocmd('CmdlineChanged', {
-  pattern = ':',
-  callback = function()
-    local cmdline = vim.fn.getcmdline()
-    if #cmdline < 3 then
-      return
-    end
-
-    vim.fn.wildtrigger()
-  end,
-})
 
 -- Unfortunately, neovim currently doesn't support opening cmdline in splits or new tabs directly,
 --- for built-in commands like :find or custom commands.

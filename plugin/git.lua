@@ -68,8 +68,8 @@ vim.cmd 'cab G Git'
 --
 -- Use the `t` prefix as a "toggle" abbreviation.
 -- Initially I've tried to use just `g` but it conflicts with the `g//` command.
-vim.cmd 'cab gsw Git switch'
-vim.cmd 'cab gswc Git switch -c '
+vim.cmd 'cab gs Git switch'
+vim.cmd 'cab gsc Git switch -c '
 vim.cmd 'cab gpl Git! pull origin '
 vim.cmd 'cab gps Git! push --force-with-lease '
 vim.cmd 'cab gf Git! fetch \\|'
@@ -80,11 +80,10 @@ vim.cmd 'cab gl Git ++curwin log --decorate --graph -100'
 vim.cmd 'cab glo Git ++curwin log --decorate --graph --oneline'
 
 -- rebase
-vim.cmd 'cab grb Git rebase '
-vim.cmd 'cab grbi Git rebase -i'
-vim.cmd 'cab grbo Git rebase --onto'
-vim.cmd 'cab grbc Git rebase --continue'
-vim.cmd 'cab grba Git rebase --abort'
+vim.cmd 'cab gri Git rebase -i'
+vim.cmd 'cab gro Git rebase --onto'
+vim.cmd 'cab grc Git rebase --continue'
+vim.cmd 'cab gra Git rebase --abort'
 -- stash/unstash
 vim.cmd 'cab gst Git stash'
 vim.cmd 'cab grsh Git reset --hard '

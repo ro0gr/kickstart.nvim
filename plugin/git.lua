@@ -57,8 +57,13 @@ vim.cmd 'cab gd Gitsigns diffthis'
 -- Fugitive and related plugins
 vim.pack.add {
   'https://github.com/tpope/vim-fugitive',
-  'https://github.com/tommcdo/vim-fubitive',
-  'https://github.com/tpope/vim-rhubarb',
+  'https://codeberg.org/trevorhauter/gitportal.nvim',
+}
+
+local gitportal = require 'gitportal'
+
+gitportal.setup {
+  always_include_current_line = true, -- Include the current line in permalinks by default
 }
 
 vim.cmd 'cab G Git'

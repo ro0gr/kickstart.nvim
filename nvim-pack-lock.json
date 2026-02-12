@@ -40,6 +40,10 @@
       "rev": "36ebedeebe82ebea250c9d671769194caa033902",
       "src": "https://github.com/beauwilliams/focus.nvim"
     },
+    "gitportal.nvim": {
+      "rev": "9a1107e270a21114f2e8549c69c94a170e405348",
+      "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "31217271a7314c343606acb4072a94a039a19fb5",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
@@ -146,10 +150,6 @@
       "rev": "aa57ba902b04341a04ff97214360f56856493583",
       "src": "https://github.com/psliwka/vim-dirtytalk"
     },
-    "vim-fubitive": {
-      "rev": "c85ca8fa2098aa05e816f5d0839a0dad6bfcca5a",
-      "src": "https://github.com/tommcdo/vim-fubitive"
-    },
     "vim-fugitive": {
       "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
       "src": "https://github.com/tpope/vim-fugitive"
@@ -157,10 +157,6 @@
     "vim-one": {
       "rev": "187f5c85b682c1933f8780d4d419c55d26a82e24",
       "src": "https://github.com/rakr/vim-one"
-    },
-    "vim-rhubarb": {
-      "rev": "5496d7c94581c4c9ad7430357449bb57fc59f501",
-      "src": "https://github.com/tpope/vim-rhubarb"
     },
     "zenbones.nvim": {
       "rev": "22b7fb75593412e0dc81b4bdefae718e9e84aa82",

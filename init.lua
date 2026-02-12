@@ -133,12 +133,6 @@ vim.o.title = true
 require('utils.title').setup()
 
 -- misc plugins
-
-vim.pack.add {
-  'https://github.com/f-person/auto-dark-mode.nvim',
-}
-require('auto-dark-mode').setup {}
-
 vim.pack.add {
   'https://github.com/kylechui/nvim-surround',
 }

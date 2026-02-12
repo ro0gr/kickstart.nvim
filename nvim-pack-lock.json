@@ -4,10 +4,6 @@
       "rev": "ad12cabd0f2c95b05d666c30641bf0c714a90f4c",
       "src": "https://github.com/carlos-algms/agentic.nvim"
     },
-    "auto-dark-mode.nvim": {
-      "rev": "e300259ec777a40b4b9e3c8e6ade203e78d15881",
-      "src": "https://github.com/f-person/auto-dark-mode.nvim"
-    },
     "caret.nvim": {
       "rev": "62a18089e5eedc329dea7fb5f1436d1c1bf672b1",
       "src": "https://github.com/projekt0n/caret.nvim"
@@ -45,7 +41,7 @@
       "src": "https://github.com/beauwilliams/focus.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "1ce96a464fdbc24208e24c117e2021794259005d",
+      "rev": "31217271a7314c343606acb4072a94a039a19fb5",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruvbox.nvim": {
@@ -61,7 +57,7 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "koda.nvim": {
-      "rev": "4656c35fa23b1c761ae534ecc959402571348676",
+      "rev": "908dc4a1e01eb4087f9ac97e8cfd84d5f407d7dd",
       "src": "https://github.com/oskarnurm/koda.nvim"
     },
     "lush.nvim": {
@@ -89,7 +85,7 @@
       "src": "https://github.com/Shatur/neovim-session-manager"
     },
     "nvim-lspconfig": {
-      "rev": "66fd02ad1c7ea31616d3ca678fa04e6d0b360824",
+      "rev": "f4e9d367d4e067d7a5fabc9fd3f1349b291eb718",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -97,7 +93,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "45a07f869b0cffba342276f2c77ba7c116d35db8",
+      "rev": "9f2dad22ef8bb14fd1e0a3aa8859cdc88170668b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -115,7 +111,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
-      "rev": "4b5cf53842c17a09420919e655a6a559da3112d7",
+      "rev": "a3e2ccb00cb8822115e28a9a1791eda051d940c9",
       "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
     "oil.nvim": {
@@ -166,16 +162,8 @@
       "rev": "5496d7c94581c4c9ad7430357449bb57fc59f501",
       "src": "https://github.com/tpope/vim-rhubarb"
     },
-    "vim-sleuth": {
-      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
-      "src": "https://github.com/tpope/vim-sleuth"
-    },
-    "which-key.nvim": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "https://github.com/folke/which-key.nvim"
-    },
     "zenbones.nvim": {
-      "rev": "4635a3f46d1066975d1074cd9f61f93cb1e32f64",
+      "rev": "22b7fb75593412e0dc81b4bdefae718e9e84aa82",
       "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }

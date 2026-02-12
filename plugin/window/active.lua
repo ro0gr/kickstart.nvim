@@ -1,27 +1,3 @@
-local function update_color_column_color()
-  vim.api.nvim_set_hl(0, 'ColorColumn', { link = 'CursorLine' })
-end
-
--- Function to determine if the theme is light or dark
-local function is_dark_mode()
-  return vim.o.background == 'dark' -- "dark" or "light"
-end
-
--- Function to update dimmed colors based on current theme
-local function update_dim_colors()
-  local dim_bg
-
-  -- Choose dim color based on light/dark mode
-  if is_dark_mode() then
-    dim_bg = '#333333' -- Darker shade for dark themes
-  else
-    dim_bg = '#DDDDDD' -- Lighter shade for light themes
-  end
-
-  -- Set highlight for inactive windows
-  vim.api.nvim_set_hl(0, 'NormalNC', { bg = dim_bg })
-end
-
 -- update highlights when switching windows
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = '*',
@@ -53,22 +29,3 @@ vim.api.nvim_create_autocmd('WinEnter', {
     vim.opt.colorcolumn = '100'
   end,
 })
-
-local update_callback = function()
-  update_dim_colors()
-  update_color_column_color()
-end
-
--- Automatically update colors when the colorscheme changes
-vim.api.nvim_create_autocmd('ColorScheme', {
-  pattern = '*',
-  callback = update_callback,
-})
-
--- also update on background change
-vim.api.nvim_create_autocmd('OptionSet', {
-  pattern = 'background',
-  callback = update_callback,
-})
-
-vim.schedule(update_callback)

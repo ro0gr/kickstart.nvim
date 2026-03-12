@@ -64,6 +64,33 @@ vim.opt.scrolloff = 0
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
+-- Fix gx for URLs with ports and enable gf to handle file:line:col
+vim.opt.isfname:append ':'
+
+_G.handle_gf = function(fname)
+  local file, line, col = fname:match '^(.-):(%d+):?(%d*)$'
+  if file and vim.fn.filereadable(file) == 1 then
+    vim.schedule(function()
+      pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(line), (tonumber(col) or 1) - 1 })
+    end)
+    return file
+  end
+  return fname
+end
+vim.opt.includeexpr = 'v:lua.handle_gf(v:fname)'
+
+vim.api.nvim_create_autocmd('BufReadCmd', {
+  pattern = '*:[0-9]*',
+  callback = function(args)
+    local file, line, col = args.file:match '^(.-):(%d+):?(%d*)$'
+    if file and vim.fn.filereadable(file) == 1 then
+      vim.api.nvim_buf_delete(args.buf, { force = true })
+      vim.cmd.edit(file)
+      pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(line), (tonumber(col) or 1) - 1 })
+    end
+  end,
+})
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

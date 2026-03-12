@@ -67,13 +67,7 @@ gitportal.setup {
 }
 
 vim.cmd 'cab G Git'
--- let command line to be closed before toggling.
--- This way, GitToggle internal logic won't false detect the cmdline as the focused buffer
--- and close the Fugitive buffer if needed.
---
--- Use the `t` prefix as a "toggle" abbreviation.
--- Initially I've tried to use just `g` but it conflicts with the `g//` command.
-vim.cmd 'cab gs Git switch'
+vim.cmd 'cab gs GitSwitch'
 vim.cmd 'cab gsc Git switch -c '
 vim.cmd 'cab gpl Git! pull origin '
 vim.cmd 'cab gps Git! push --force-with-lease '
@@ -81,8 +75,8 @@ vim.cmd 'cab gf Git! fetch \\|'
 vim.cmd 'cab grs Git reset @~'
 
 -- log
-vim.cmd 'cab gl Git ++curwin log --decorate --graph -100'
-vim.cmd 'cab glo Git ++curwin log --decorate --graph --oneline'
+vim.cmd 'cab gl Git ++curwin log --decorate --graph --oneline -100'
+vim.cmd 'cab glo Gclog -100'
 
 -- rebase
 vim.cmd 'cab gri Git rebase -i'
@@ -136,3 +130,43 @@ end, {
 })
 
 vim.keymap.set({ 'n', 'i', 't' }, '<M-g>', '<CMD>GitToggle<CR>', { desc = 'Fu[g]itive toggle' })
+
+-- :GitSwitch
+--
+-- auto-complete local branches and remotes sorted by recency
+-- fuzzymatch auto-complete.
+-- if the branch doesn't exist, create it and switch to it with a confirmation prompt.
+vim.api.nvim_create_user_command('GitSwitch', function(opts)
+  local selected = opts.args
+  if not selected or selected == '' then
+    return
+  end
+
+  -- check if the branch exists locally or remotely
+  local branch_exists = selected == '-'
+  if not branch_exists then
+    vim.fn.system('git rev-parse --verify ' .. vim.fn.shellescape(selected) .. ' 2>/dev/null')
+    branch_exists = vim.v.shell_error == 0
+  end
+
+  if branch_exists then
+    vim.cmd('Git switch ' .. selected)
+  else
+    local confirm = vim.fn.confirm('Branch "' .. selected .. '" does not exist. Create it?', '&Yes\n&No')
+    if confirm == 1 then
+      vim.cmd('Git switch -c ' .. selected)
+    end
+  end
+end, {
+  desc = 'Switch to a git branch',
+  nargs = 1,
+  complete = function(arglead)
+    local branches = vim.fn.systemlist 'git branch --all --sort=-committerdate --format="%(refname:short)"'
+
+    if arglead == '' then
+      return branches
+    end
+
+    return require('utils').match_with_wildoptions(branches, arglead)
+  end,
+})

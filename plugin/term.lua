@@ -6,14 +6,18 @@
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-local build_tmux_cmd = function(project_name)
-  return 'tmux new -A -t "' .. project_name .. '"'
-end
+local config = {
+  position = 'topleft',
+
+  cmd_template = function(project_name)
+    return 'tmux new -A -t "' .. project_name .. '"'
+  end,
+}
 
 vim.api.nvim_create_user_command('TermProjectFocus', function()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
   local bufnr = -1
-  local cmd = build_tmux_cmd(project_name)
+  local cmd = config.cmd_template(project_name)
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     local buf_name = vim.api.nvim_buf_get_name(buf)
@@ -24,7 +28,7 @@ vim.api.nvim_create_user_command('TermProjectFocus', function()
   end
 
   if bufnr == -1 then
-    vim.cmd 'topleft new'
+    vim.cmd(config.position .. ' new')
     vim.cmd('terminal ' .. cmd)
   else
     local win_found = false
@@ -37,7 +41,7 @@ vim.api.nvim_create_user_command('TermProjectFocus', function()
     end
 
     if not win_found then
-      vim.cmd('topleft new | buffer ' .. bufnr)
+      vim.cmd(config.position .. ' new | buffer ' .. bufnr)
     end
   end
 

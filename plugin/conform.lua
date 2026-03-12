@@ -30,7 +30,6 @@ require('conform').setup {
     typescript = { 'eslint_d', 'prettierd' },
     typescriptreact = { 'eslint_d', 'prettierd' },
     css = { 'stylelint', 'prettierd' },
-    html = { 'prettierd' },
     scss = { 'stylelint', 'prettierd' },
     handlebars = { 'prettierd' },
   },

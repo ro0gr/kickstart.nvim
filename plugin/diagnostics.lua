@@ -9,7 +9,7 @@ vim.diagnostic.config {
   },
 
   -- Show all diagnostics as underline (for their messages type `<Leader>ld`)
-  underline = { severity = vim.diagnostic.severity.ERROR },
+  underline = { severity = vim.diagnostic.severity.HINT },
 
   -- Show more details immediately for errors on the current line
   virtual_lines = false,

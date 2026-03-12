@@ -27,6 +27,8 @@ require('nvim-treesitter').install {
   'vim',
   'yaml',
   'zig',
+  'scala',
+  'java',
 }
 
 local on_pack_changed = function(ev)

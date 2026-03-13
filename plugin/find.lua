@@ -89,4 +89,4 @@ end, {
 })
 
 -- Open buffer list and select first item
-vim.keymap.set('n', '<C-n>', ':SearchFile <Tab><C-n>', { noremap = true, desc = 'Open buffer list and select first' })
+vim.keymap.set('n', '<C-n>', ':SearchFile <Tab>', { noremap = true, desc = 'Open buffer list and select first' })

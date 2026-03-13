@@ -2,7 +2,9 @@
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = '*',
   callback = function()
-    vim.cmd 'set winhighlight=Normal:Normal' -- Restore normal highlight
+    vim.schedule(function()
+      vim.cmd 'set winhighlight=Normal:Normal' -- Restore normal highlight
+    end)
   end,
 })
 

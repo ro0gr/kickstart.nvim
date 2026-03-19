@@ -137,7 +137,7 @@ vim.keymap.set({ 'n', 'i', 't' }, '<M-g>', '<CMD>GitToggle<CR>', { desc = 'Fu[g]
 -- fuzzymatch auto-complete.
 -- if the branch doesn't exist, create it and switch to it with a confirmation prompt.
 vim.api.nvim_create_user_command('GitSwitch', function(opts)
-  local selected = opts.args
+  local selected = opts.args:match '^%s*(.-)%s*$'
   if not selected or selected == '' then
     return
   end

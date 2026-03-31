@@ -3,8 +3,10 @@ vim.pack.add {
   'https://github.com/nvim-tree/nvim-web-devicons',
 }
 
-vim.keymap.set('n', '<M-->', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-vim.keymap.set('n', '<C-W><M-->', '<CMD>split | Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '<M-e>', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '<C-W>e', '<CMD>split | Oil<CR>', { desc = 'Open parent directory in a window' })
+vim.keymap.set('n', '<M-E>', '<CMD>e $PWD<CR>', { desc = 'Open PWD directory' })
+vim.keymap.set('n', '<C-W>E', '<CMD>split | e $PWD<CR>', { desc = 'Open PWD directory in a window' })
 
 -- helper function to parse output
 local function parse_output(proc)

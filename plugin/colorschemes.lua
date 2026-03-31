@@ -29,16 +29,24 @@ end
 -- Function to update dimmed colors based on current theme
 local function update_dim_colors()
   local dim_bg
+  local non_text_dim_bg
+  local separator_fg
 
   -- Choose dim color based on light/dark mode
   if is_dark_mode() then
     dim_bg = '#333333' -- Darker shade for dark themes
+    non_text_dim_bg = '#262626'
+    separator_fg = '#505050'
   else
     dim_bg = '#DDDDDD' -- Lighter shade for light themes
+    non_text_dim_bg = '#CFCFCF'
+    separator_fg = '#B5B5B5'
   end
 
   -- Set highlight for inactive windows
   vim.api.nvim_set_hl(0, 'NormalNC', { bg = dim_bg })
+  vim.api.nvim_set_hl(0, 'NormalNonTextNC', { bg = non_text_dim_bg })
+  vim.api.nvim_set_hl(0, 'WinSeparatorNonTextNC', { fg = separator_fg, bg = non_text_dim_bg })
 end
 
 local update_callback = function()

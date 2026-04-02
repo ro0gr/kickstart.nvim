@@ -21,6 +21,21 @@ local function update_color_column_color()
   vim.api.nvim_set_hl(0, 'ColorColumn', { link = 'CursorLine' })
 end
 
+local function update_tabline_highlights()
+  local ok, tabline_sel = pcall(vim.api.nvim_get_hl, 0, { name = 'TabLineSel' })
+  if not ok then
+    return
+  end
+
+  -- :highlight replaces the group definition, so skip linked or missing groups
+  -- to avoid breaking colorscheme links when only trying to add bold.
+  if vim.tbl_isempty(tabline_sel) or tabline_sel.link then
+    return
+  end
+
+  vim.cmd 'highlight TabLineSel gui=bold cterm=bold'
+end
+
 -- Function to determine if the theme is light or dark
 local function is_dark_mode()
   return vim.opt.background:get() == 'dark' -- "dark" or "light"
@@ -52,6 +67,7 @@ end
 local update_callback = function()
   update_dim_colors()
   update_color_column_color()
+  update_tabline_highlights()
 end
 
 -- Automatically update colors when the colorscheme changes

@@ -2,6 +2,7 @@ vim.pack.add {
   'https://github.com/3dyuval/retro-fallout.nvim',
   'https://github.com/NLKNguyen/papercolor-theme',
   'https://github.com/NTBBloodbath/doom-one.nvim',
+  'https://github.com/ThorstenRhau/token',
   'https://github.com/altercation/vim-colors-solarized',
   'https://github.com/ellisonleao/gruvbox.nvim',
   'https://github.com/oskarnurm/koda.nvim',

@@ -164,3 +164,6 @@ vim.pack.add {
 require('image').setup {
   backend = 'kitty',
 }
+vim.cmd [[
+  packadd cfilter
+]]

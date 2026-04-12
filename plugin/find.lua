@@ -61,9 +61,14 @@ end, {
       return a.lastused > b.lastused
     end)
 
+    local curr_buf_name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~:.')
     local listed_buffer_names = {}
     for _, buf in pairs(listed_buffers) do
-      table.insert(listed_buffer_names, vim.fn.fnamemodify(buf.name, ':~:.'))
+      local buf_name = vim.fn.fnamemodify(buf.name, ':~:.')
+      -- TODO: consider avoiding checking each row, and check only the first one instead
+      if curr_buf_name ~= buf_name then
+        table.insert(listed_buffer_names, buf_name)
+      end
     end
 
     if arg == '' then

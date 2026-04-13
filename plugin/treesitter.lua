@@ -57,5 +57,30 @@ require('demicolon').setup {
 
 local nxo = { 'n', 'x', 'o' }
 
-vim.keymap.set(nxo, ';', require('demicolon.repeat_jump').next)
-vim.keymap.set(nxo, ',', require('demicolon.repeat_jump').prev)
+local ts_repeat_move = require 'nvim-treesitter-textobjects.repeatable_move'
+vim.keymap.set(nxo, ';', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set(nxo, ',', ts_repeat_move.repeat_last_move_previous)
+
+require('nvim-treesitter-textobjects').setup {
+  move = {
+    set_jumps = true,
+  },
+}
+
+local ts_move = require 'nvim-treesitter-textobjects.move'
+
+vim.keymap.set(nxo, ']]', function()
+  ts_move.goto_next_start({ '@block.outer', '@function.outer', '@class.outer' }, 'textobjects')
+end, { desc = 'Next block start' })
+
+vim.keymap.set(nxo, '][', function()
+  ts_move.goto_next_end({ '@block.outer', '@function.outer', '@class.outer' }, 'textobjects')
+end, { desc = 'Next block end' })
+
+vim.keymap.set(nxo, '[[', function()
+  ts_move.goto_previous_start({ '@block.outer', '@function.outer', '@class.outer' }, 'textobjects')
+end, { desc = 'Previous block start' })
+
+vim.keymap.set(nxo, '[]', function()
+  ts_move.goto_previous_end({ '@block.outer', '@function.outer', '@class.outer' }, 'textobjects')
+end, { desc = 'Previous block end' })

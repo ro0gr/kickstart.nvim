@@ -89,10 +89,10 @@ vim.cmd 'cab grsh Git reset --hard '
 vim.cmd 'cab gc Git commit'
 vim.cmd 'cab gca Git commit --amend'
 vim.cmd 'cab gcp Git cherry-pick '
-vim.cmd 'cab gsh Git  ++curwin show'
-vim.cmd 'cab gco Git co '
+vim.cmd 'cab gsh Git ++curwin show'
 vim.cmd 'cab gb Git ++curwin branch'
 vim.cmd 'cab gbm Git branch -m '
+vim.cmd 'cab go Git co'
 
 -- Toggle the Fugitive buffer
 -- If the buffer is not focused, open it. If it is focused, close it.

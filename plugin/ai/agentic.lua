@@ -6,6 +6,30 @@ local agentic = require 'agentic'
 
 agentic.setup {
   provider = 'opencode-acp',
+
+  keymaps = {
+    widget = {
+      change_mode = {
+        {
+          '<Tab>',
+          mode = { 'i', 'n', 'v' },
+        },
+      },
+      switch_model = {
+        '<M-m>', -- Switch model
+        mode = { 'n', 'v', 'i' },
+      },
+    },
+
+    prompt = {
+      submit = {
+        {
+          '<C-s>',
+          mode = { 'n', 'v', 'i' },
+        },
+      },
+    },
+  },
 }
 
 -- focus the prompt input or close the chat if already focused

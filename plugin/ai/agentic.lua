@@ -4,8 +4,34 @@ vim.pack.add {
 
 local agentic = require 'agentic'
 
+local function notify_ghostty(message, tabpage)
+  local title = 'Agentic'
+  local cwd = vim.fn.getcwd(-1, tabpage or 0)
+  local project = vim.fn.fnamemodify(cwd, ':t')
+  -- Format: [project] Agentic: message
+  local payload = string.format('[%s] %s: %s', project, title, message)
+  local osc9 = string.format('\27]9;%s\7', payload)
+  vim.api.nvim_ui_send(osc9)
+end
+
 agentic.setup {
   provider = 'opencode-acp',
+
+  hooks = {
+    on_response_complete = function(data)
+      if data.success then
+        notify_ghostty('Response finished', data.tab_page_id)
+      else
+        local err_msg = 'Error'
+        if type(data.error) == 'table' and data.error.message then
+          err_msg = 'Error: ' .. data.error.message
+        elseif type(data.error) == 'string' then
+          err_msg = 'Error: ' .. data.error
+        end
+        notify_ghostty(err_msg, data.tab_page_id)
+      end
+    end,
+  },
 
   keymaps = {
     widget = {

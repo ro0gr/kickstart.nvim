@@ -93,6 +93,7 @@ vim.cmd 'cab gsh Git ++curwin show'
 vim.cmd 'cab gb Git ++curwin branch'
 vim.cmd 'cab gbm Git branch -m '
 vim.cmd 'cab go Git co'
+vim.cmd 'cab gdt Git difftool'
 
 -- Toggle the Fugitive buffer
 -- If the buffer is not focused, open it. If it is focused, close it.

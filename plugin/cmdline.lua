@@ -40,3 +40,6 @@ end
 setup_open_target_keymap('<C-V>', 'vsplit', 'Open command line result in vertical split when pum is visible')
 setup_open_target_keymap('<C-S>', 'split', 'Open command line result in horizontal split when pum is visible')
 setup_open_target_keymap('<C-T>', 'tabnew', 'Open command line result in new tab when pum is visible')
+
+vim.o.cmdheight = 0
+vim.pack.add { 'https://github.com/rachartier/tiny-cmdline.nvim' }

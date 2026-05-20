@@ -125,7 +125,6 @@ vim.opt.completeopt = 'fuzzy,popup,noselect,menuone,preview'
 
 vim.cmd [[
   packadd cfilter
-  packadd undotree
 ]]
 
 -- [[ Basic Autocommands ]]

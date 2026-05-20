@@ -1,5 +1,6 @@
 vim.pack.add {
-  'https://github.com/carlos-algms/agentic.nvim',
+  -- 'https://github.com/carlos-algms/agentic.nvim',
+  { src = 'https://github.com/ro0gr/agentic.nvim', version = 'feat/execution-notifications' },
 }
 
 local agentic = require 'agentic'
@@ -30,6 +31,12 @@ agentic.setup {
         end
         notify_ghostty(err_msg, data.tab_page_id)
       end
+    end,
+
+    on_request_permission = function(data)
+      local tool_call = type(data.request) == 'table' and data.request.toolCall or nil
+      local label = tool_call and (tool_call.title or tool_call.kind) or 'Agent action'
+      notify_ghostty('Permission required: ' .. label, data.tab_page_id)
     end,
   },
 

@@ -35,12 +35,6 @@ agentic.setup {
 
   keymaps = {
     widget = {
-      change_mode = {
-        {
-          '<Tab>',
-          mode = { 'i', 'n', 'v' },
-        },
-      },
       switch_model = {
         '<M-m>', -- Switch model
         mode = { 'n', 'v', 'i' },

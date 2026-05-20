@@ -70,4 +70,27 @@ vim.keymap.set({ 'v' }, '<M-a>', function()
   return agentic.add_selection()
 end, { expr = true, desc = 'Add range to agentic([A]I)' })
 
+-- get method names(sub_commands) from the agentic var keys
+local sub_commands = vim.tbl_keys(agentic)
+
+vim.api.nvim_create_user_command('Agentic', function(opts)
+  -- check if args is equal to any of the sub_commands
+  if vim.tbl_contains(sub_commands, opts.args) then
+    agentic[opts.args]() -- call the corresponding function
+    return
+  end
+end, {
+  nargs = '*',
+  range = true,
+  complete = function(arg_lead)
+    if arg_lead == '' then
+      return sub_commands
+    end
+
+    return require('utils').match_with_wildoptions(sub_commands, arg_lead)
+  end,
+})
+
+vim.cmd 'cabbr ag Agentic'
+
 vim.g.autoread = true

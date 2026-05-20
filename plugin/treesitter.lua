@@ -43,6 +43,11 @@ end
 vim.api.nvim_create_autocmd('PackChanged', { callback = on_pack_changed })
 
 vim.pack.add {
+  'https://github.com/nvim-treesitter/nvim-treesitter-context',
+}
+require('treesitter-context').setup {}
+
+vim.pack.add {
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
 }
 

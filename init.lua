@@ -123,6 +123,11 @@ vim.o.autocomplete = false
 vim.o.complete = 'o,.,w,b,u'
 vim.opt.completeopt = 'fuzzy,popup,noselect,menuone,preview'
 
+vim.cmd [[
+  packadd cfilter
+  packadd undotree
+]]
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -148,15 +153,15 @@ vim.pack.add {
 require('nvim-surround').setup {}
 
 vim.pack.add {
-  'https://github.com/nvim-treesitter/nvim-treesitter-context',
-}
-require('treesitter-context').setup {}
-
-vim.pack.add {
   'https://github.com/stevearc/quicker.nvim',
 }
 require('quicker').setup {}
 
-vim.cmd [[
-  packadd cfilter
-]]
+vim.pack.add {
+  'https://github.com/echasnovski/mini.pick',
+}
+
+local MiniPick = require 'mini.pick'
+
+MiniPick.setup()
+vim.ui.select = MiniPick.ui_select

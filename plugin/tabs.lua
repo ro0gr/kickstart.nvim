@@ -1,5 +1,6 @@
 vim.cmd 'cab tq tabclose'
-vim.cmd 'cab te tabedit %:p:h'
+vim.cmd 'cab te tabedit'
+vim.cmd 'cab tE tabedit %:p:h'
 vim.cmd 'cab tw tabedit $PWD'
 vim.cmd 'cab tm tabmove'
 

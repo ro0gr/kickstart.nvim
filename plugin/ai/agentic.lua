@@ -1,6 +1,6 @@
 vim.pack.add {
-  -- 'https://github.com/carlos-algms/agentic.nvim',
-  { src = 'https://github.com/ro0gr/agentic.nvim', version = 'feat/execution-notifications' },
+  'https://github.com/carlos-algms/agentic.nvim',
+  -- { src = 'https://github.com/ro0gr/agentic.nvim', version = 'feat/execution-notifications' },
 }
 
 local agentic = require 'agentic'
@@ -16,7 +16,7 @@ local function notify_ghostty(message, tabpage)
 end
 
 agentic.setup {
-  provider = 'opencode-acp',
+  provider = 'mistral-vibe-acp',
 
   hooks = {
     on_response_complete = function(data)
@@ -81,9 +81,14 @@ end, { expr = true, desc = 'Add range to agentic([A]I)' })
 local sub_commands = vim.tbl_keys(agentic)
 
 vim.api.nvim_create_user_command('Agentic', function(opts)
-  -- check if args is equal to any of the sub_commands
-  if vim.tbl_contains(sub_commands, opts.args) then
-    agentic[opts.args]() -- call the corresponding function
+  -- trim each arg
+  local args = vim.tbl_map(function(arg)
+    return vim.trim(arg)
+  end, opts.fargs)
+
+  -- check if the first arg is a known sub_command
+  if vim.tbl_contains(sub_commands, args[1]) then
+    agentic[args[1]]() -- call the corresponding function
     return
   end
 end, {
@@ -99,5 +104,6 @@ end, {
 })
 
 vim.cmd 'cabbr ag Agentic'
+vim.cmd 'cabbr agp Agentic switch_provider'
 
 vim.g.autoread = true

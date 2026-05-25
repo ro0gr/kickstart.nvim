@@ -1,7 +1,7 @@
 {
   "plugins": {
     "agentic.nvim": {
-      "rev": "d7e82c9c3e8bbbe8f81d451a704aa5a73eb9e5e2",
+      "rev": "0ba4456caa22425eb06868aa5a7b5723d62522ca",
       "src": "https://github.com/carlos-algms/agentic.nvim"
     },
     "caret.nvim": {
@@ -9,11 +9,11 @@
       "src": "https://github.com/projekt0n/caret.nvim"
     },
     "catppuccin": {
-      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "rev": "8edd468af4d63212b84d69b2ddb5ffc9023ef5eb",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
-      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.vim": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/sainnhe/edge"
     },
     "everforest": {
-      "rev": "b03a03148c8b34c24c96960b93da9c8883d11f54",
+      "rev": "aeef62ee97872d2557d25904d160ec93a4a355f8",
       "src": "https://github.com/sainnhe/everforest"
     },
     "focus.nvim": {
@@ -41,15 +41,15 @@
       "src": "https://github.com/beauwilliams/focus.nvim"
     },
     "gitportal.nvim": {
-      "rev": "928b1acdb88a260cbfa73014d8c134308cfcef2d",
+      "rev": "31f48653c4b179009e89f42fa31acada3f645a88",
       "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "0d797daee85366bc242580e352a4f62d67557b84",
+      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruvbox.nvim": {
-      "rev": "334d5fd49fc8033f26408425366c66c6390c57bb",
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "image.nvim": {
@@ -57,11 +57,11 @@
       "src": "https://github.com/3rd/image.nvim"
     },
     "kanagawa.nvim": {
-      "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
+      "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "koda.nvim": {
-      "rev": "a560a332ccc1eb2caacb280a390213bb9f37b3cb",
+      "rev": "541c80190dc955ece378ce4766c35e7a7e373306",
       "src": "https://github.com/oskarnurm/koda.nvim"
     },
     "lush.nvim": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     "mason.nvim": {
-      "rev": "b03fb0f20bc1d43daf558cda981a2be22e73ac42",
+      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "melange-nvim": {
@@ -81,7 +81,7 @@
       "src": "https://github.com/savq/melange-nvim"
     },
     "mini.pick": {
-      "rev": "fd7e7efadddcec3f3d7f3b363a99aa44e7286c65",
+      "rev": "4522d9ab65224675df2cf1ede8c12f0410aae2be",
       "src": "https://github.com/echasnovski/mini.pick"
     },
     "neovim-session-manager": {
@@ -89,11 +89,11 @@
       "src": "https://github.com/Shatur/neovim-session-manager"
     },
     "nvim-lspconfig": {
-      "rev": "bedca8b426b2fee0ccac596d167d71bbe971253f",
+      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-metals": {
-      "rev": "48b9d29a4e1370495db4d4b5ccbc17b285bc98eb",
+      "rev": "4cc98f07ec96bb748a8796831767538e0e4f9be4",
       "src": "https://github.com/scalameta/nvim-metals"
     },
     "nvim-surround": {
@@ -110,12 +110,12 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
+      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "95b7a002d5dba1a42eb58f5fac5c565a485eefd0",
+      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
@@ -123,7 +123,7 @@
       "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
     "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "papercolor-theme": {
@@ -131,7 +131,7 @@
       "src": "https://github.com/NLKNguyen/papercolor-theme"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "project.nvim": {
@@ -139,7 +139,7 @@
       "src": "https://github.com/ahmedkhalf/project.nvim"
     },
     "quicker.nvim": {
-      "rev": "063cc44da1eef8681bbd653b29d3bc961780886a",
+      "rev": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
       "src": "https://github.com/stevearc/quicker.nvim"
     },
     "retro-fallout.nvim": {
@@ -147,11 +147,15 @@
       "src": "https://github.com/3dyuval/retro-fallout.nvim"
     },
     "rose-pine": {
-      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
+      "rev": "6a961effd67f6130d36df6d1c05c48c739796dd2",
       "src": "https://github.com/rose-pine/neovim"
     },
+    "tiny-cmdline.nvim": {
+      "rev": "ad58747b955d0743ccfd56e97da1a4c1fac89f58",
+      "src": "https://github.com/rachartier/tiny-cmdline.nvim"
+    },
     "token": {
-      "rev": "0576b004dac571ee8bb0d038008efa89b5b3f588",
+      "rev": "5dbcf002a9ac7eda4fb78fe5a7ceaaac8162e511",
       "src": "https://github.com/ThorstenRhau/token"
     },
     "vim-colors-solarized": {
@@ -163,8 +167,9 @@
       "src": "https://github.com/psliwka/vim-dirtytalk"
     },
     "vim-fugitive": {
-      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
-      "src": "https://github.com/tpope/vim-fugitive"
+      "rev": "026283f2a2e4c39063538c45ee3ee584074d5d40",
+      "src": "~/art/3rd-party/vim-fugitive",
+      "version": "'fuzzy-complete'"
     },
     "vim-one": {
       "rev": "187f5c85b682c1933f8780d4d419c55d26a82e24",
